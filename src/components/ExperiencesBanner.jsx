@@ -1,5 +1,5 @@
 import { Button, Image } from "react-bootstrap";
-import { Gem, Pen, Plus } from "react-bootstrap-icons";
+import { Pen, Plus } from "react-bootstrap-icons";
 
 const ExperiencesBanner = function () {
   return (
