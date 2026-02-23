@@ -6,7 +6,7 @@ const ExperiencesBanner = function () {
     <div className=" p-3 rounded border border-black border-opacity-10">
       {/* Intestazione sezione */}
       <div className=" d-flex justify-content-between align-items-center mb-2">
-        <h3>Formazione</h3>
+        <h3>Esperienza</h3>
         <div className=" d-flex gap-3">
           <Button variant="light">
             <Plus size={25}></Plus>
