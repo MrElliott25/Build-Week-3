@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Container, Card, Form, Button } from "react-bootstrap";
-import TestComponent from "./TestComponent";
 import { useDispatch } from "react-redux";
 import { setUserAction } from "../redux/actions/actions";
 
