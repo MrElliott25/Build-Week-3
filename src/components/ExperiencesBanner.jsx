@@ -1,6 +1,5 @@
 import { Button, Image } from "react-bootstrap";
 import { Diamond, Pen, Plus } from "react-bootstrap-icons";
-import * as Icon from "react-bootstrap-icons";
 
 const ExperiencesBanner = function () {
   return (
