@@ -1,0 +1,31 @@
+.sidebar {
+  width: 320px;
+  border-color: grey;
+}
+
+.solo-per-te {
+  display: inline-block;
+  line-height: 1;
+}
+
+.eye {
+  vertical-align: center;
+}
+
+.OtherProfilesText {
+  text-align: start;
+}
+
+.textColorGray {
+  color: gray;
+  
+}
+
+.mostraTutto:hover {
+  background-color: rgb(223, 222, 222);
+}
+
+
+.pointer {
+  cursor: pointer;
+}

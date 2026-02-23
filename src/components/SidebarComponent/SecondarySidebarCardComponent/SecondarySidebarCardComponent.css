@@ -1,0 +1,33 @@
+.sidebarUpdates {
+  text-align: start;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.profileSidebarCardPlaceholder {
+  width: 60px;
+  border-radius: 50%;
+}
+
+.fontWeight {
+  font-weight: 700;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+
+.secondaryCardDescriptionText {
+  font-size: 13px;
+}
+
+
+
+.fontWeight {
+  font-weight: 700;
+}
