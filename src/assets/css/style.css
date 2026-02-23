@@ -1,0 +1,17 @@
+/* Login Component */
+
+.linkedin-btn {
+  background-color: #0a66c2 !important;
+  border-color: #0a66c2 !important;
+  border-radius: 25px !important;
+  padding: 12px 0;
+  transition: background-color 0.2s ease;
+}
+.linkedin-btn:hover {
+  background-color: #004182 !important;
+  border-color: #004182 !important;
+}
+.form-control:focus {
+  border-color: #0a66c2 !important;
+  box-shadow: 0 0 0 1px #0a66c2 !important;
+}
