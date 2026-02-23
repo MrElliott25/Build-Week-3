@@ -13,13 +13,14 @@ const ProfileFrontBanner = function () {
         <Col>
           <div className="border mt-3">
             <div className="position-relative">
+              {/* immagine di sfondo */}
               <img
                 src="https://www.nieddittas.it/wp-content/uploads/2024/04/differenza-tra-mare-e-oceano.jpg"
                 alt="sea"
                 className="img-fluid w-100"
                 style={{ height: "200px", objectFit: "cover" }}
               />
-
+              {/* immagine profilo  */}
               <img
                 src="https://t2informatik.de/en/wp-content/uploads/sites/2/2022/01/user-smartpedia-t2informatik.png"
                 alt="user"
@@ -37,12 +38,15 @@ const ProfileFrontBanner = function () {
             <div className="p-3 pt-5">
               <div className="d-lg-flex">
                 <div className="pt-2">
+                  {/* nome e cognome */}
                   <h2>Stefano Casasola</h2>
+                  {/* esperienze */}
                   <p className="mb-1">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Founder & Software Developer @ Nucleode SRL - Educator @
+                    EPICODE - IT Consultant
                   </p>
                 </div>
-
+                {/* ul per mettere aziende o studi frequentati */}
                 <ul className="ms-lg-auto list-unstyled mb-2 mb-lg-0">
                   <li>
                     <a href="#" className=" a-blue">
@@ -56,14 +60,14 @@ const ProfileFrontBanner = function () {
                   </li>
                 </ul>
               </div>
-
+              {/* area */}
               <p>
                 Gorizia, Friuli-Venezia Giulia, Italia{" "}
                 <a href="#" className="text-decoration-none">
                   Informazioni di contatto
                 </a>
               </p>
-
+              {/* bottoni nella prima scheda */}
               <button className="btn rounded-pill me-2 px-3 py-1 btn-primary">
                 Collegati
               </button>
