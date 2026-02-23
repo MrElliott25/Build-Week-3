@@ -1,5 +1,5 @@
 import { Button, Image } from "react-bootstrap";
-import { Diamond, Pen, Plus } from "react-bootstrap-icons";
+import { Gem, Pen, Plus } from "react-bootstrap-icons";
 
 const ExperiencesBanner = function () {
   return (
@@ -39,7 +39,7 @@ const ExperiencesBanner = function () {
 
           {/* Competenze */}
           <div className="mb-2 d-flex align-items-center">
-            <Diamond className="me-2" size={12} />
+            <Gem className="me-2" size={12} />
             <p className="mb-0 fw-bold" style={{ fontSize: "0.8rem" }}>
               Html, Css, JS, React + 5 competenze
             </p>
@@ -70,7 +70,7 @@ const ExperiencesBanner = function () {
 
           {/* Competenze */}
           <div className="mb-2 d-flex align-items-center">
-            <Diamond className="me-2" size={12} />
+            <Gem className="me-2" size={12} />
             <p className="mb-0 fw-bold" style={{ fontSize: "0.8rem" }}>
               Cottura pizza, aggiungere legna, maestria con la pala + 1 competenza
             </p>
@@ -102,7 +102,7 @@ const ExperiencesBanner = function () {
 
           {/* Competenze */}
           <div className="mb-2 d-flex align-items-center">
-            <Diamond className="me-2" size={12} />
+            <Gem className="me-2" size={12} />
             <p className="mb-0 fw-bold" style={{ fontSize: "0.8rem" }}>
               Sium + altre 5 competenze
             </p>
