@@ -1,0 +1,18 @@
+.glow-btn:hover {
+  background-color: rgb(244, 241, 241);
+}
+.glow-btn:active {
+  background-color: lightgray;
+}
+
+.bg-bianco {
+  background-color: white;
+}
+.a-blue {
+  color: black;
+  text-decoration: none;
+}
+.a-blue:hover {
+  color: rgb(82, 82, 253);
+  text-decoration: underline;
+}
