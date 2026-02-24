@@ -1,0 +1,21 @@
+.messagingMenu {
+
+  z-index: 1000;
+  bottom: 0px;
+  right: 50px;
+}
+
+.messagingMenuUserImage {
+  width: 30px;
+  border-radius: 50%;
+}
+
+.dimentions {
+  width: 320px;
+}
+
+.accordionHeight {
+  height: 600px;
+  padding: 0;
+  overflow-y: "auto";
+}
