@@ -4,12 +4,13 @@ import "./assets/css/style.css";
 import { Provider } from "react-redux";
 import { persistedStore, store } from "./redux/store/store";
 import { PersistGate } from "redux-persist/integration/react";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistedStore}>
-        <LoginComponent />
+        <ProfilePage />
       </PersistGate>
     </Provider>
   );
