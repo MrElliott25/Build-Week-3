@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Container, Card, Form, Button } from "react-bootstrap";
-import TestComponent from "./TestComponent";
 import { useDispatch } from "react-redux";
 import { setUserAction } from "../redux/actions/actions";
 
@@ -23,10 +22,7 @@ const LoginComponent = () => {
         else throw new Error("Errore nella pesca dei dati");
       })
       .then((data) => {
-        const loggedUser = data.find(
-          (user) =>
-            user.email === loginEmailValue.trim() && user.username === loginUsernameValue.trim(),
-        );
+        const loggedUser = data.find((user) => user.email === loginEmailValue.trim() && user.username === loginUsernameValue.trim());
         if (loggedUser) {
           dispatch(setUserAction(loggedUser));
           resetForm();
