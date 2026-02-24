@@ -4,12 +4,14 @@ import "./assets/css/style.css";
 import { Provider } from "react-redux";
 import { persistedStore, store } from "./redux/store/store";
 import { PersistGate } from "redux-persist/integration/react";
+import HomeFrontBanner from "./components/HomeFrontBanner/HomeFrontBanner";
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistedStore}>
-        <LoginComponent />
+        {/* <LoginComponent /> */}
+        <HomeFrontBanner />
       </PersistGate>
     </Provider>
   );
