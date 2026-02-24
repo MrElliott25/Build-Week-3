@@ -2,7 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import SinglePost from "./SinglePost";
 import NewPostSection from "./NewPostSection";
 
-const HomeFrontBanner = function () {
+const HomepageFrontBanner = function () {
   return (
     <Container>
       <Row>
@@ -17,4 +17,4 @@ const HomeFrontBanner = function () {
   );
 };
 
-export default HomeFrontBanner;
+export default HomepageFrontBanner;

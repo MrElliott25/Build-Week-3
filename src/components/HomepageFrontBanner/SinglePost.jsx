@@ -1,10 +1,11 @@
-import { Button, Container, Image } from "react-bootstrap";
-import { ArrowRepeat, ChatText, HandThumbsUp, PersonFillAdd, Send } from "react-bootstrap-icons";
+import { Button, Image } from "react-bootstrap";
+import { ArrowRepeat, ChatText, HandThumbsUp, HandThumbsUpFill, HeartFill, LightbulbFill, PersonFillAdd, Send } from "react-bootstrap-icons";
 
 const SinglePost = function () {
   const ImagePH = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
+
   return (
-    <div className=" p-3 rounded border border-black border-opacity-10 mt-5 w-100">
+    <div className=" p-3 rounded border border-black border-opacity-10  w-100 mt-4">
       {/* Strip Utente */}
       <div className=" d-flex gap-3">
         <Image roundedCircle src={ImagePH} style={{ maxHeight: "60px" }} />
@@ -30,6 +31,24 @@ const SinglePost = function () {
           sequi praesentium sit odit quia delectus, harum quis excepturi totam! Accusantium ipsam commodi omnis vel maxime eaque, mollitia accusamus!
         </p>
       </div>
+
+      <div className=" d-flex justify-content-between align-items-center px-2">
+        <div className=" d-flex align-items-center">
+          <HandThumbsUpFill size={15} className=" text-primary" />
+          <HeartFill size={15} className=" text-danger" />
+          <LightbulbFill size={15} className=" text-warning" />
+          <p className="mb-0 ms-2">71</p>
+        </div>
+
+        <div className=" d-flex align-items-center">
+          <p className="mb-0" style={{ fontSize: "0.9rem" }}>
+            <span> 104 Commenti </span>
+            <span> &bull; </span>
+            <span>208 diffusioni post </span>
+          </p>
+        </div>
+      </div>
+
       <hr style={{ opacity: "0.1" }} />
 
       <div className=" d-flex justify-content-evenly">
