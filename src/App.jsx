@@ -11,7 +11,16 @@ function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistedStore}>
+<<<<<<< Updated upstream
         <ProfileLeftSidebarComponent />
+=======
+
+        <ProfilePage />
+
+        <ProfileLeftSidebarComponent />
+        <UniversalMessagingComponent />
+
+>>>>>>> Stashed changes
       </PersistGate>
     </Provider>
   );
