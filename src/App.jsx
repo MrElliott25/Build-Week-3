@@ -7,12 +7,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import HomeRightSidebar from "./components/HomeRightSidebar";
 import ProfileFrontBanner from "./components/ProfileFrontBanner";
 import { Container, Row, Col } from "react-bootstrap";
+import WorkPage from "./components/WorkPage";
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistedStore}>
-        <LoginComponent />
+        <WorkPage />
+        {/* <LoginComponent /> */}
         {/* <Container>
           <Row>
             <Col lg="8">
