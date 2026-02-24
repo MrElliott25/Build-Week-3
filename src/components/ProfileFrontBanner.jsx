@@ -2,7 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./ProfileFrontBanner.css";
 import { useState } from "react";
 import { ArrowRight } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
+import ExperiencesBanner from "./ExperiencesBanner";
 
 const ProfileFrontBanner = function () {
   const [referenza, setReferenza] = useState("ricevute");
@@ -12,7 +12,7 @@ const ProfileFrontBanner = function () {
     <Container>
       <Row>
         <Col>
-          <div className="border mt-3">
+          <div className="border">
             <div className="position-relative">
               {/* immagine di sfondo */}
               <img
@@ -87,6 +87,7 @@ const ProfileFrontBanner = function () {
               </h5>
             </button>
           </div>
+          <ExperiencesBanner />
           {/* foermazione */}
           <div className="border mt-3 p-3">
             <h2>Formazione</h2>
