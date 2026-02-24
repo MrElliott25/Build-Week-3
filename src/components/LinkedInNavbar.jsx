@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Container, Form, Nav, NavDropdown } from "react-bootstrap";
 // icone simili a quelle di LinkedIn
-import { FaLinkedin, FaHome, FaUserFriends, FaBriefcase, FaCommentDots, FaBell } from "react-icons/fa";
+import { FaLinkedin, FaHome, FaUserFriends, FaBriefcase, FaCommentDots, FaBell, FaSearch } from "react-icons/fa";
 
 const LinkedInNavbar = () => {
   // FASE DINAMICA (Futuro): Qui non farai una fetch, leggerai i dati da Redux.
@@ -18,9 +18,14 @@ const LinkedInNavbar = () => {
           <FaLinkedin size={40} color="#0a66c2" />
         </Navbar.Brand>
 
-        <Form className="d-none d-lg-flex me-auto">
-          <Form.Control type="search" placeholder="Cerca" className="bg-light border-0" style={{ minWidth: "250px" }} aria-label="Search" />
-        </Form>
+        <div className="px-3">
+          <Form className=" d-flex me-auto align-items-center">
+            <div className="px-2">
+              <FaSearch className=""> </FaSearch>
+            </div>
+            <Form.Control type="search" placeholder="Cerca" className="bg-tertiary border-0 rounded-5" style={{ minWidth: "250px" }} aria-label="Search" />
+          </Form>
+        </div>
 
         {/* LATO DESTRO: Navigazione e Profilo */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -53,7 +58,7 @@ const LinkedInNavbar = () => {
 
             {/* ZONA PROFILO - Qui andranno i dati dell'API */}
 
-            <div className="d-flex flex-column align-items-center justify-content-center mx-3 border-start ps-3">
+            <div className="d-flex flex-column align-items-center justify-content-center mx-3 border-start  ps-3">
               <img src={currentUser.image} alt="profile" style={{ width: "24px", height: "24px", borderRadius: "50%", objectFit: "cover" }} />
               <NavDropdown title="Tu" id="basic-nav-dropdown" style={{ fontSize: "12px" }}>
                 <NavDropdown.Item as={Link} to="/profile">
