@@ -1,0 +1,19 @@
+.LeftSidebarSecondSection {
+  width: 270px;
+
+  border: 1px black;
+}
+
+.fontsizeSecondaryDescriptionText {
+    margin: 0;
+font-size: 15px;
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
