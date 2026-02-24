@@ -58,9 +58,9 @@ const HomeRightSidebar = function () {
   const visibleNews = showAll ? news : news.slice(0, 5);
 
   return (
-    <div className="px-3 ">
+    <div className="px-3 h-100">
       <Row>
-        <Col lg="2">
+        <Col lg="12">
           <div className=" position-relative ">
             {" "}
             <h3>LinkedIn Notizie</h3>
@@ -120,68 +120,69 @@ const HomeRightSidebar = function () {
               </Button>
             )}
           </div>
-
-          {/* div immagine */}
-          <div>
-            <a href="https://www.linkedin.com/jobs/">
-              <img
-                src="https://media.licdn.com/media/AAYAAQTPAAgAAQAAAAAAADBJg6kiYYJxTUOBq1MuLPcNcQ.png"
-                alt="linke"
-                className="img-fluid rounded-4 pointer mt-3 "
-              />
-            </a>
-          </div>
-          {/* mini footer */}
-          <div
-            id="miniFooter"
-            className="d-flex flex-wrap  justify-content-center mt-2">
-            <a href="#" className="me-3 ">
-              informazioni
-            </a>
-            <a href="#" className="me-3">
-              Accessibilità
-            </a>
-            <a href="#" className="me-3">
-              Centro assistenza{" "}
-            </a>
-            <a href="#" className="me-3">
-              Privacy e condizioni ▼
-            </a>
-            <a href="#" className="me-3">
-              Opzioni per gli annunci pubblicitari
-            </a>
-            <a href="#" className="me-3">
-              Pubblicità
-            </a>
-            <a href="#" className="me-3">
-              Servizi alle aziende ▼
-            </a>
-            <a href="#" className="me-3">
-              Scarica l'app Linkedin
-            </a>
-            <a href="#" className="me-3">
-              Altro
-            </a>
-
-            <div className="d-flex justify-content-center mt-3">
-              {" "}
-              <h6 style={{ color: "#0a66c2", fontWeight: "bold" }}>
-                Linked
-                <span
-                  style={{
-                    backgroundColor: "#0a66c2",
-                    color: "#fff",
-                    padding: "0 4px",
-                    borderRadius: "3px",
-                  }}>
-                  in
-                </span>
-              </h6>
-              <h6 className="ms-1"> LinkedIn Corporation © 2026</h6>
-            </div>
-          </div>
         </Col>
       </Row>
+      {/* div sticky */}
+      <div className="sticky-top">
+        {/* div immagine */}
+        <div>
+          <a href="https://www.linkedin.com/jobs/">
+            <img
+              src="https://media.licdn.com/media/AAYAAQTPAAgAAQAAAAAAADBJg6kiYYJxTUOBq1MuLPcNcQ.png"
+              alt="linke"
+              className="img-fluid rounded-4 pointer mt-3 "
+            />
+          </a>
+        </div>
+        {/* mini footer */}
+        <div
+          id="miniFooter"
+          className="d-flex flex-wrap  justify-content-center mt-2">
+          <a href="#" className="me-3 ">
+            informazioni
+          </a>
+          <a href="#" className="me-3">
+            Accessibilità
+          </a>
+          <a href="#" className="me-3">
+            Centro assistenza{" "}
+          </a>
+          <a href="#" className="me-3">
+            Privacy e condizioni ▼
+          </a>
+          <a href="#" className="me-3">
+            Opzioni per gli annunci pubblicitari
+          </a>
+          <a href="#" className="me-3">
+            Pubblicità
+          </a>
+          <a href="#" className="me-3">
+            Servizi alle aziende ▼
+          </a>
+          <a href="#" className="me-3">
+            Scarica l'app Linkedin
+          </a>
+          <a href="#" className="me-3">
+            Altro
+          </a>
+        </div>
+        <div className="d-flex justify-content-center mt-3">
+          {" "}
+          <h6 style={{ color: "#0a66c2", fontWeight: "bold" }}>
+            Linked
+            <span
+              style={{
+                backgroundColor: "#0a66c2",
+                color: "#fff",
+                padding: "0 4px",
+                borderRadius: "3px",
+              }}>
+              in
+            </span>
+          </h6>
+          <h6 className="ms-1"> LinkedIn Corporation © 2026</h6>
+        </div>
+      </div>
     </div>
   );
 };
