@@ -25,7 +25,7 @@ const LinkedInNavbar = () => {
   ];
 
   return (
-    <Navbar bg="light" expand="lg" className="border-bottom sticky-top" style={{ backgroundColor: "#fff", height: "52px" }}>
+    <Navbar bg="light" expand="lg" className="border-bottom sticky-top" style={{ backgroundColor: "#fff", minHeight: "52px" }}>
       <Container>
         <Navbar.Brand as={Link} to="/home" className="me-2">
           <FaLinkedin size={36} color="#0a66c2" />
@@ -58,7 +58,7 @@ const LinkedInNavbar = () => {
             ))}
 
             {/* ZONA PROFILO */}
-            <div className="d-flex flex-column align-items-center mx-2 linkedin-nav-icon">
+            <div className="d-flex flex-column align-items-center mx-2 linkedin-nav-icon position-relative">
               <img
                 src={currentUser.image}
                 alt="profile"
