@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Container, Card, Form, Button } from "react-bootstrap";
-import TestComponent from "./TestComponent";
 import { useDispatch } from "react-redux";
 import { setUserAction } from "../redux/actions/actions";
 
@@ -25,7 +24,8 @@ const LoginComponent = () => {
       .then((data) => {
         const loggedUser = data.find(
           (user) =>
-            user.email === loginEmailValue.trim() && user.username === loginUsernameValue.trim(),
+            user.email === loginEmailValue.trim() &&
+            user.username === loginUsernameValue.trim(),
         );
         if (loggedUser) {
           dispatch(setUserAction(loggedUser));
@@ -51,8 +51,7 @@ const LoginComponent = () => {
       className="d-flex align-items-center justify-content-center min-vh-100"
       style={{
         background: "linear-gradient(135deg, #004182 0%, #ffffff 100%)",
-      }}
-    >
+      }}>
       <Card
         className="shadow-lg"
         style={{
@@ -61,8 +60,7 @@ const LoginComponent = () => {
           borderRadius: "15px",
           border: "4px solid #0a66c2",
           overflow: "hidden",
-        }}
-      >
+        }}>
         <Card.Body className="p-5 bg-white">
           <div className="text-center mb-4">
             <h2 style={{ color: "#0a66c2", fontWeight: "bold" }}>
@@ -73,20 +71,20 @@ const LoginComponent = () => {
                   color: "#fff",
                   padding: "0 4px",
                   borderRadius: "3px",
-                }}
-              >
+                }}>
                 in
               </span>
             </h2>
-            <p className="text-muted mt-2">Accedi alla tua rete professionale</p>
+            <p className="text-muted mt-2">
+              Accedi alla tua rete professionale
+            </p>
           </div>
 
           <Form
             onSubmit={(e) => {
               e.preventDefault();
               handleLogin();
-            }}
-          >
+            }}>
             <Form.Group className="mb-3">
               <Form.Label className="fw-bold" style={{ fontSize: "0.9rem" }}>
                 Email

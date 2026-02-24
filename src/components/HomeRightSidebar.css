@@ -1,0 +1,36 @@
+ul {
+  list-style-type: none; /* Rimuove i puntini */
+  margin: 0; /* Rimuove margini predefiniti */
+  padding: 0; /* Rimuove padding predefinito */
+}
+li:hover {
+  cursor: pointer;
+}
+.pointer:hover {
+  cursor: pointer;
+}
+li {
+  margin-top: 1em;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+
+#miniFooter a:hover {
+  color: rgb(82, 82, 253);
+  text-decoration: underline;
+}
+
+.glow-btn:hover {
+  background-color: rgb(244, 241, 241);
+}
+.glow-btn:active {
+  background-color: lightgray;
+}
+
+.parte-sticky {
+  position: sticky;
+  top: 20px; /* distanza dal top della viewport */
+  z-index: 10; /* sopra altri elementi se serve */
+}
