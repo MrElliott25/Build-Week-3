@@ -22,10 +22,7 @@ const LoginComponent = () => {
         else throw new Error("Errore nella pesca dei dati");
       })
       .then((data) => {
-        const loggedUser = data.find(
-          (user) =>
-            user.email === loginEmailValue.trim() && user.username === loginUsernameValue.trim(),
-        );
+        const loggedUser = data.find((user) => user.email === loginEmailValue.trim() && user.username === loginUsernameValue.trim());
         if (loggedUser) {
           dispatch(setUserAction(loggedUser));
           resetForm();
