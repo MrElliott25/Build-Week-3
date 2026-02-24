@@ -1,11 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Navbar, Container, Form, Nav, NavDropdown } from "react-bootstrap";
 // icone simili a quelle di LinkedIn
 import { FaLinkedin, FaHome, FaUserFriends, FaBriefcase, FaCommentDots, FaBell, FaSearch } from "react-icons/fa";
 
 const LinkedInNavbar = () => {
-  // FASE DINAMICA (Futuro): Qui non farai una fetch, leggerai i dati da Redux.
+  // FASE DINAMICA (Futuro)
+  const location = useLocation();
+
   const currentUser = {
     name: "Carmelo",
     image: "https://via.placeholder.com/30",
@@ -31,27 +33,43 @@ const LinkedInNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto text-center align-items-center">
-            <Nav.Link as={Link} to="/home" className="d-flex flex-column align-items-center mx-2 text-secondary">
+            <Nav.Link
+              as={Link}
+              to="/home"
+              className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/home" ? "active-nav-link" : ""}`}
+            >
               <FaHome size={22} />
               <span style={{ fontSize: "12px" }}>Home</span>
             </Nav.Link>
 
-            <Nav.Link href="#network" className="d-flex flex-column align-items-center mx-2 text-secondary">
+            <Nav.Link
+              href="#network"
+              className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/network" ? "active-nav-link" : ""}`}
+            >
               <FaUserFriends size={22} />
               <span style={{ fontSize: "12px" }}>Rete</span>
             </Nav.Link>
 
-            <Nav.Link href="#jobs" className="d-flex flex-column align-items-center mx-2 text-secondary">
+            <Nav.Link
+              href="#jobs"
+              className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/jobs" ? "active-nav-link" : ""}`}
+            >
               <FaBriefcase size={22} />
               <span style={{ fontSize: "12px" }}>Lavoro</span>
             </Nav.Link>
 
-            <Nav.Link href="#messaging" className="d-flex flex-column align-items-center mx-2 text-secondary">
+            <Nav.Link
+              href="#messaging"
+              className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/messaging" ? "active-nav-link" : ""}`}
+            >
               <FaCommentDots size={22} />
               <span style={{ fontSize: "12px" }}>Messaggistica</span>
             </Nav.Link>
 
-            <Nav.Link href="#notifications" className="d-flex flex-column align-items-center mx-2 text-secondary">
+            <Nav.Link
+              href="#notifications"
+              className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/notifications" ? "active-nav-link" : ""}`}
+            >
               <FaBell size={22} />
               <span style={{ fontSize: "12px" }}>Notifiche</span>
             </Nav.Link>

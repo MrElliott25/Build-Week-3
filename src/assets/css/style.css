@@ -15,3 +15,20 @@
   border-color: #0a66c2 !important;
   box-shadow: 0 0 0 1px #0a66c2 !important;
 }
+
+.linkedin-nav-icon {
+  color: #737373;
+  transition: color 0.2s ease-in-out;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}
+
+.linkedin-nav-icon:hover {
+  color: #080808;
+}
+.linkedin-nav-icon.active-nav-link {
+  color: #191919;
+  border-bottom: 2px solid #191919;
+}
