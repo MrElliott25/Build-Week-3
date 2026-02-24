@@ -14,7 +14,6 @@ import LoginComponent from "./components/LoginComponent";
 import LinkedInNavbar from "./components/LinkedInNavbar";
 import ProfileFrontBanner from "./components/ProfileFrontBanner";
 import ExperiencesBanner from "./components/ExperiencesBanner";
-import SidebarComponent from "./components/SidebarComponent/SidebarComponent";
 
 const PaginaNonRichiesta = ({ titolo }) => (
   <div className="text-center mt-5 p-5 border rounded bg-white shadow-sm">
@@ -50,9 +49,7 @@ function App() {
                       <ProfileFrontBanner />
                       <ExperiencesBanner />
                     </div>
-                    <div className="col-lg-4">
-                      <SidebarComponent />
-                    </div>
+                    <div className="col-lg-4"></div>
                   </div>
                 }
               />

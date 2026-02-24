@@ -3,6 +3,7 @@ import "./ProfileFrontBanner.css";
 import { useState } from "react";
 import { ArrowRight } from "react-bootstrap-icons";
 import ExperiencesBanner from "./ExperiencesBanner";
+import { Link } from "react-router-dom";
 
 const ProfileFrontBanner = function () {
   const [referenza, setReferenza] = useState("ricevute");
