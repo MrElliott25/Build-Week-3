@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Navbar, Container, Form, Nav, NavDropdown } from "react-bootstrap";
 // icone simili a quelle di LinkedIn
 import { FaLinkedin, FaHome, FaUserFriends, FaBriefcase, FaCommentDots, FaBell, FaSearch } from "react-icons/fa";
+import { TfiLayoutGrid3Alt, IoMdArrowDropdown } from "react-icons/tfi";
 
 const LinkedInNavbar = () => {
   // FASE DINAMICA (Futuro)
@@ -38,7 +39,7 @@ const LinkedInNavbar = () => {
               to="/home"
               className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/home" ? "active-nav-link" : ""}`}
             >
-              <FaHome size={22} />
+              <FaHome size={18} />
               <span style={{ fontSize: "12px" }}>Home</span>
             </Nav.Link>
 
@@ -46,7 +47,7 @@ const LinkedInNavbar = () => {
               href="#network"
               className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/network" ? "active-nav-link" : ""}`}
             >
-              <FaUserFriends size={22} />
+              <FaUserFriends size={18} />
               <span style={{ fontSize: "12px" }}>Rete</span>
             </Nav.Link>
 
@@ -54,7 +55,7 @@ const LinkedInNavbar = () => {
               href="#jobs"
               className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/jobs" ? "active-nav-link" : ""}`}
             >
-              <FaBriefcase size={22} />
+              <FaBriefcase size={18} />
               <span style={{ fontSize: "12px" }}>Lavoro</span>
             </Nav.Link>
 
@@ -62,7 +63,7 @@ const LinkedInNavbar = () => {
               href="#messaging"
               className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/messaging" ? "active-nav-link" : ""}`}
             >
-              <FaCommentDots size={22} />
+              <FaCommentDots size={18} />
               <span style={{ fontSize: "12px" }}>Messaggistica</span>
             </Nav.Link>
 
@@ -70,13 +71,12 @@ const LinkedInNavbar = () => {
               href="#notifications"
               className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/notifications" ? "active-nav-link" : ""}`}
             >
-              <FaBell size={22} />
+              <FaBell size={18} />
               <span style={{ fontSize: "12px" }}>Notifiche</span>
             </Nav.Link>
 
             {/* ZONA PROFILO - Qui andranno i dati dell'API */}
-
-            <div className="d-flex flex-column align-items-center justify-content-center mx-3 border-start  ps-3">
+            <div className="d-flex flex-column align-items-center">
               <img src={currentUser.image} alt="profile" style={{ width: "24px", height: "24px", borderRadius: "50%", objectFit: "cover" }} />
               <NavDropdown title="Tu" id="basic-nav-dropdown" style={{ fontSize: "12px" }}>
                 <NavDropdown.Item as={Link} to="/profile">
@@ -85,6 +85,14 @@ const LinkedInNavbar = () => {
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#settings">Impostazioni</NavDropdown.Item>
               </NavDropdown>
+            </div>
+
+            <div className="d-flex flex-column align-items-center justify-content-center mx-3 border-start  ps-3">
+              <TfiLayoutGrid3Alt
+                size={18}
+                className={`d-flex flex-column align-items-center mx-2 linkedin-nav-icon ${location.pathname === "/" ? "active-nav-link" : ""}`}
+              />
+              <span style={{ fontSize: "12px" }}>Per le aziende </span>
             </div>
           </Nav>
         </Navbar.Collapse>
