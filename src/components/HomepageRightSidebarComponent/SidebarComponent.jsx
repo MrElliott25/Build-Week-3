@@ -7,6 +7,7 @@ import img from "../../assets/media/placeholder.jpg";
 import { FiArrowRight, FiEdit2 } from "react-icons/fi";
 import SecondarySidebarCardComponent from "./SecondarySidebarCardComponent/SecondarySidebarCardComponent";
 import SuggestedPagesComponent from "./SuggestPagesComponent/SuggestedPagesComponent";
+import { Link } from "react-router-dom";
 
 function SidebarComponent() {
   const profiles = [
@@ -118,15 +119,7 @@ function SidebarComponent() {
             </Col>
 
             {profiles.map((card, index) => {
-              return (
-                <SidebarCardComponent
-                  key={index}
-                  name={card.name}
-                  description={card.description}
-                  index={index}
-                  url={card.img}
-                ></SidebarCardComponent>
-              );
+              return <SidebarCardComponent key={index} name={card.name} description={card.description} index={index} url={card.img}></SidebarCardComponent>;
             })}
           </Col>
         </Row>
@@ -169,22 +162,18 @@ function SidebarComponent() {
 
             {suggestedPages.map((card, index) => {
               return (
-                <SuggestedPagesComponent
-                  key={index}
-                  name={card.name}
-                  description={card.description}
-                  index={index}
-                  url={card.img}
-                ></SuggestedPagesComponent>
+                <SuggestedPagesComponent key={index} name={card.name} description={card.description} index={index} url={card.img}></SuggestedPagesComponent>
               );
             })}
           </Col>
         </Row>
         <Col xs={12} className=" mostraTutto text-center mt-2">
           <hr className="m-0" />
-          <h6 className="mb-0 p-2 pointer">
-            Mostra tutto <FiArrowRight />
-          </h6>
+          <Link to="/network" className="text-decoration-none text-dark">
+            <h6 className="mb-0 p-2 pointer">
+              Mostra tutto <FiArrowRight />
+            </h6>
+          </Link>
         </Col>
       </div>
     </>
