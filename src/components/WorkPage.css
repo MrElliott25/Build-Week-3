@@ -12,3 +12,7 @@
 .per-bottoni .glow-btn {
   border: solid 1px lightgrey;
 }
+a {
+  color: black;
+  text-decoration: none;
+}
