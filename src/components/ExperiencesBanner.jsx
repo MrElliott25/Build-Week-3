@@ -69,7 +69,7 @@ const ExperiencesBanner = function () {
       method,
     );
     resetForm();
-    loadData();
+    await loadData();
     setShowModal(false);
   };
 
@@ -243,6 +243,7 @@ const ExperiencesBanner = function () {
                 API={experiencesAPI + "/"}
                 rehydrate={() => rehydrateForm(experience)}
                 setID={setExperienceID}
+                loadData={loadData}
               />
             );
           })
