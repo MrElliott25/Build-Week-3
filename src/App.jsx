@@ -14,6 +14,8 @@ import LoginComponent from "./components/LoginComponent";
 import LinkedInNavbar from "./components/LinkedInNavbar";
 import ProfileFrontBanner from "./components/ProfileFrontBanner";
 import ExperiencesBanner from "./components/ExperiencesBanner";
+import { AppContextProvider } from "../AppContextProvider/AppContextProvider";
+import UniversalMessagingComponent from "./components/UniversalMessagingComponent/UniversalMessagingComponent";
 
 const PaginaNonRichiesta = ({ titolo }) => (
   <div className="text-center mt-5 p-5 border rounded bg-white shadow-sm">
@@ -31,42 +33,45 @@ function App() {
       <PersistGate persistor={persistedStore}>
         {/* Avvia Router */}
         <BrowserRouter>
-          {/* Navbar fissa */}
-          <LinkedInNavbar />
+          <AppContextProvider>
+            {/* Navbar fissa */}
+            <LinkedInNavbar />
+            <UniversalMessagingComponent/>
 
-          {/* Margini globali */}
-          <div className="container mt-4">
-            <Routes>
-              {/* Rotta Login */}
-              <Route path="/" element={<LoginComponent />} />
+            {/* Margini globali */}
+            <div className="container mt-4">
+              <Routes>
+                {/* Rotta Login */}
+                <Route path="/" element={<LoginComponent />} />
 
-              {/* Rotta Profilo  */}
-              <Route
-                path="/profile"
-                element={
-                  <div className="row">
-                    <div className="col-lg-8">
-                      <ProfileFrontBanner />
-                      <ExperiencesBanner />
+                {/* Rotta Profilo  */}
+                <Route
+                  path="/profile"
+                  element={
+                    <div className="row">
+                      <div className="col-lg-8">
+                        <ProfileFrontBanner />
+                        <ExperiencesBanner />
+                      </div>
+                      <div className="col-lg-4"></div>
                     </div>
-                    <div className="col-lg-4"></div>
-                  </div>
-                }
-              />
+                  }
+                />
 
-              {/* IL TAPPABUCHI PER LA HOME  */}
-              <Route path="/home" element={<PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />} />
+                {/* IL TAPPABUCHI PER LA HOME  */}
+                <Route path="/home" element={<PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />} />
 
-              {/* LE PAGINE NON RICHIESTE */}
-              <Route path="/network" element={<PaginaNonRichiesta titolo="La tua Rete" />} />
-              <Route path="/jobs" element={<PaginaNonRichiesta titolo="Offerte di Lavoro" />} />
-              <Route path="/messaging" element={<PaginaNonRichiesta titolo="Messaggistica" />} />
-              <Route path="/notifications" element={<PaginaNonRichiesta titolo="Notifiche" />} />
+                {/* LE PAGINE NON RICHIESTE */}
+                <Route path="/network" element={<PaginaNonRichiesta titolo="La tua Rete" />} />
+                <Route path="/jobs" element={<PaginaNonRichiesta titolo="Offerte di Lavoro" />} />
+                <Route path="/messaging" element={<PaginaNonRichiesta titolo="Messaggistica" />} />
+                <Route path="/notifications" element={<PaginaNonRichiesta titolo="Notifiche" />} />
 
-              {/* ROTTA 404 */}
-              <Route path="*" element={<h1 className="text-center mt-5 text-danger">404 - Sparisci</h1>} />
-            </Routes>
-          </div>
+                {/* ROTTA 404 */}
+                <Route path="*" element={<h1 className="text-center mt-5 text-danger">404 - Sparisci</h1>} />
+              </Routes>
+            </div>
+          </AppContextProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>

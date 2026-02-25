@@ -27,6 +27,7 @@ const ExperiencesBanner = function () {
     setIsLoading(true);
     const data = await fetchExperiences(experiencesAPI);
     setAllExperiences(data);
+    console.log(data);
     setIsLoading(false);
   };
 

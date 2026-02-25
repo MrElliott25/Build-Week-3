@@ -1,15 +1,25 @@
 import { Container, Row, Col } from "react-bootstrap";
 import "./ProfileFrontBanner.css";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ArrowRight } from "react-bootstrap-icons";
 import ExperiencesBanner from "./ExperiencesBanner";
 import { Link } from "react-router-dom";
+import { AppContext } from "../assets/contexts/context";
+import { useSelector } from "react-redux";
 
 const ProfileFrontBanner = function () {
   const [referenza, setReferenza] = useState("ricevute");
   const [interessi, setInteressi] = useState("aziende");
+  const { populateProfile, setPopulateProfile } = useContext(AppContext);
 
-  return (
+  const profileData = useSelector((state) => state.user);
+
+  useEffect(() => {
+    setPopulateProfile(profileData);
+    console.log(populateProfile);
+  }, [populateProfile]);
+
+  return populateProfile ? (
     <Container>
       <Row>
         <Col>
@@ -24,7 +34,7 @@ const ProfileFrontBanner = function () {
               />
               {/* immagine profilo  */}
               <img
-                src="https://t2informatik.de/en/wp-content/uploads/sites/2/2022/01/user-smartpedia-t2informatik.png"
+                src={populateProfile.image}
                 alt="user"
                 className="rounded-circle border border-white position-absolute"
                 style={{
@@ -41,9 +51,11 @@ const ProfileFrontBanner = function () {
               <div className="d-lg-flex">
                 <div className="pt-2">
                   {/* nome e cognome */}
-                  <h2>Stefano Casasola</h2>
+                  <h2>{populateProfile.name} {populateProfile.surname}</h2>
                   {/* esperienze */}
-                  <p className="mb-1">Founder & Software Developer @ Nucleode SRL - Educator @ EPICODE - IT Consultant</p>
+                  <p className="mb-1">
+                    {populateProfile.title}
+                  </p>
                 </div>
                 {/* ul per mettere aziende o studi frequentati */}
                 <ul className="ms-lg-auto list-unstyled mb-2 mb-lg-0">
@@ -114,10 +126,18 @@ const ProfileFrontBanner = function () {
           <div className="border mt-3 p-3">
             <h2>Referenze</h2>
             <div>
-              <button type="button" className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 " onClick={() => setReferenza("ricevute")}>
+              <button
+                type="button"
+                className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 "
+                onClick={() => setReferenza("ricevute")}
+              >
                 <h5 className="m-0">Ricevute</h5>
               </button>
-              <button type="button" className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 " onClick={() => setReferenza("scritte")}>
+              <button
+                type="button"
+                className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 "
+                onClick={() => setReferenza("scritte")}
+              >
                 <h5 className="m-0">Scritte</h5>
               </button>
               <hr />
@@ -145,13 +165,16 @@ const ProfileFrontBanner = function () {
                         </Link>
                       </h3>
                       <p>
-                        Ho avuto il privilegio di partecipare al bootcamp presso Strive School (EPICODE) sotto la guida del docente Stefano Casasola e posso
-                        affermare che la sua competenza, professionalità e dedizione sono state determinanti per il mio percorso di apprendimento. Il suo
-                        approccio didattico è stato sempre chiaro, strutturato e orientato alla pratica, il che mi ha permesso di sviluppare rapidamente le
-                        competenze necessarie per entrare nel mondo della programmazione web. Mi ha motivato costantemente a dare il massimo, fornendo feedback
-                        costruttivi che mi hanno permesso di crescere sia dal punto di vista tecnico che personale. Oltre alla sua conoscenza approfondita delle
-                        tecnologie, ha saputo creare un ambiente di apprendimento stimolante e inclusivo, dove ogni studente si è sentito supportato e
-                        incoraggiato a superare le proprie difficoltà. Sono grata per tutto ciò che ho imparato grazie a lui e, senza dubbio, raccomando
+                        Ho avuto il privilegio di partecipare al bootcamp presso Strive School (EPICODE) sotto la guida
+                        del docente Stefano Casasola e posso affermare che la sua competenza, professionalità e
+                        dedizione sono state determinanti per il mio percorso di apprendimento. Il suo approccio
+                        didattico è stato sempre chiaro, strutturato e orientato alla pratica, il che mi ha permesso di
+                        sviluppare rapidamente le competenze necessarie per entrare nel mondo della programmazione web.
+                        Mi ha motivato costantemente a dare il massimo, fornendo feedback costruttivi che mi hanno
+                        permesso di crescere sia dal punto di vista tecnico che personale. Oltre alla sua conoscenza
+                        approfondita delle tecnologie, ha saputo creare un ambiente di apprendimento stimolante e
+                        inclusivo, dove ogni studente si è sentito supportato e incoraggiato a superare le proprie
+                        difficoltà. Sono grata per tutto ciò che ho imparato grazie a lui e, senza dubbio, raccomando
                         vivamente la sua guida a chiunque voglia intraprendere un percorso nel mondo del coding.
                       </p>
                     </div>
@@ -174,9 +197,10 @@ const ProfileFrontBanner = function () {
                         </a>
                       </h3>
                       <p>
-                        I strongly believe that despite the professional skills, human values are the most important. But when a person is both professional and
-                        has tons of other values, thats what makes him/her a unique asset in any team. For anyone who has to read this reccommendation, I have
-                        to say don't waste a second, because your professional search is going to end here and now.
+                        I strongly believe that despite the professional skills, human values are the most important.
+                        But when a person is both professional and has tons of other values, thats what makes him/her a
+                        unique asset in any team. For anyone who has to read this reccommendation, I have to say don't
+                        waste a second, because your professional search is going to end here and now.
                       </p>
                     </div>
                   </div>
@@ -203,10 +227,11 @@ const ProfileFrontBanner = function () {
                         </a>
                       </h3>
                       <p>
-                        Ho avuto il privilegio di partecipare al bootcamp presso Strive School (EPICODE) sotto la guida del docente Stefano Casasola e posso
-                        affermare che la sua competenza, professionalità e dedizione sono state determinanti per il mio percorso di apprendimento. Il suo
-                        approccio didattico è stato sempre chiaro, strutturato e orientato alla pratica, il che mi ha permesso di sviluppare rapidamente le
-                        competenze necessarie per entrare nel mondo della programmazione web.
+                        Ho avuto il privilegio di partecipare al bootcamp presso Strive School (EPICODE) sotto la guida
+                        del docente Stefano Casasola e posso affermare che la sua competenza, professionalità e
+                        dedizione sono state determinanti per il mio percorso di apprendimento. Il suo approccio
+                        didattico è stato sempre chiaro, strutturato e orientato alla pratica, il che mi ha permesso di
+                        sviluppare rapidamente le competenze necessarie per entrare nel mondo della programmazione web.
                       </p>
                     </div>
                   </div>
@@ -228,10 +253,11 @@ const ProfileFrontBanner = function () {
                         </a>
                       </h3>
                       <p>
-                        Durante il suo percorso formativo in EPICODE, Hassan ha sempre dimostrato una grande voglia di apprendere ed inesauribile tenacia,
-                        argomento dopo argomento. Sempre costante nell'esecuzione e nelle consegne, ha appreso con ritmo le tematiche proposte durante il corso.
-                        Nei lavori di squadra si è dimostrato un membro serio e affidabile nei team in cui è stato inserito, capace di collaborare al meglio al
-                        fine di ottenere un risultato collettivo.
+                        Durante il suo percorso formativo in EPICODE, Hassan ha sempre dimostrato una grande voglia di
+                        apprendere ed inesauribile tenacia, argomento dopo argomento. Sempre costante nell'esecuzione e
+                        nelle consegne, ha appreso con ritmo le tematiche proposte durante il corso. Nei lavori di
+                        squadra si è dimostrato un membro serio e affidabile nei team in cui è stato inserito, capace di
+                        collaborare al meglio al fine di ottenere un risultato collettivo.
                       </p>
                     </div>
                   </div>
@@ -251,13 +277,25 @@ const ProfileFrontBanner = function () {
           <div className="border mt-3 p-3">
             <h2>Interessi</h2>
             <div>
-              <button type="button" className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 " onClick={() => setInteressi("aziende")}>
+              <button
+                type="button"
+                className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 "
+                onClick={() => setInteressi("aziende")}
+              >
                 <h5 className="m-0">Aziende</h5>
               </button>
-              <button type="button" className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 " onClick={() => setInteressi("gruppi")}>
+              <button
+                type="button"
+                className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 "
+                onClick={() => setInteressi("gruppi")}
+              >
                 <h5 className="m-0">Gruppi</h5>
               </button>
-              <button type="button" className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 " onClick={() => setInteressi("scuole o università")}>
+              <button
+                type="button"
+                className="border-0 py-2 glow-btn m-1 bg-bianco mb-2 "
+                onClick={() => setInteressi("scuole o università")}
+              >
                 <h5 className="m-0">Scuole o università</h5>
               </button>
               <hr />
@@ -399,7 +437,7 @@ const ProfileFrontBanner = function () {
         </Col>
       </Row>
     </Container>
-  );
+  ) : null;
 };
 
 export default ProfileFrontBanner;
