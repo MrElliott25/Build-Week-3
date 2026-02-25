@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addPostAction } from "../../redux/actions/postsActions";
-import { createPost } from "../../utils/postsFetch";
+import { modifyPostAction } from "../../redux/actions/postsActions";
+import { modifyPost } from "../../utils/postsFetch";
 import { Button, Image, Modal, Form } from "react-bootstrap";
 import { CardImage, EmojiSmile, CalendarEvent, Gear, Plus, Clock } from "react-bootstrap-icons";
 
-const CreatePost = function (props) {
+const EditPost = function (props) {
   const dispatch = useDispatch();
   const ImagePH = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
   const [text, setText] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (props.show && props.post) {
+      setText(props.post.text || "");
+    }
+  }, [props.show, props.post]);
 
   const userCanPublish = text.trim().length > 0;
 
@@ -20,6 +26,7 @@ const CreatePost = function (props) {
   };
 
   const handlePublish = function () {
+    if (!props.post || !props.post._id) return;
     if (!userCanPublish || isSaving) return;
 
     setIsSaving(true);
@@ -28,14 +35,13 @@ const CreatePost = function (props) {
       text: text.trim(),
     };
 
-    createPost(props.postsAPI, payload)
+    modifyPost(props.postsAPI, props.post._id, payload)
       .then((newPost) => {
-        dispatch(addPostAction(newPost));
+        dispatch(modifyPostAction(newPost));
         handleClose();
       })
       .catch((err) => {
         alert("Errore:" + err.message);
-
         setIsSaving(false);
       });
   };
@@ -62,7 +68,7 @@ const CreatePost = function (props) {
           rows={10}
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="Di cosa vorresti parlare?"
+          placeholder="Modifica il post..."
           className="border-0 shadow-none fs-5"
         />
         <div className="d-flex align-items-center gap-3 mt-3">
@@ -95,7 +101,7 @@ const CreatePost = function (props) {
             className="rounded-pill px-4 ms-2"
             onClick={handlePublish}
           >
-            {isSaving ? "Pubblicando..." : "Pubblica"}
+            {isSaving ? "Salvando..." : "Salva"}
           </Button>
         </div>
       </Modal.Footer>
@@ -103,4 +109,4 @@ const CreatePost = function (props) {
   );
 };
 
-export default CreatePost;
+export default EditPost;

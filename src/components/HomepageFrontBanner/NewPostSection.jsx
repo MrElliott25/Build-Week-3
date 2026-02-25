@@ -17,14 +17,14 @@ const NewPostSection = function (props) {
         </Button>
       </div>
 
-      <div className=" mt-3 px-5 d-flex justify-content-around  align-items-center gap-3">
-        <Button variant="light" className="mb-0 fw-bold d-flex align-items-center gap-1">
+      <div className=" mt-3 px-2 px-md-5 d-flex justify-content-between  align-items-center gap-3">
+        <Button variant="light" className="mb-0 fw-bold d-flex align-items-center gap-1 gap-md-2 flex-fill">
           <PlayBtnFill className=" text-success" size={30} /> Video
         </Button>
-        <Button variant="light" className="mb-0 fw-bold d-flex align-items-center gap-1">
+        <Button variant="light" className="mb-0 fw-bold d-flex align-items-center gap-1 gap-md-2 flex-fill">
           <CardImage className=" text-primary" size={30} /> Foto
         </Button>
-        <Button variant="light" className="mb-0 fw-bold d-flex align-items-center gap-1">
+        <Button variant="light" className="mb-0 fw-bold d-flex align-items-center gap-1 gap-md-2 flex-fill">
           <CardText className=" text-danger" size={30} /> Scrivi un articolo
         </Button>
       </div>
