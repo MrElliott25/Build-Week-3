@@ -86,13 +86,7 @@ const ExperiencesBanner = function () {
   return (
     <div className=" p-3 rounded border border-black border-opacity-10 mt-3">
       {/* FORM INSERIMENTO ESPERIENZA */}
-      <Modal
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        backdrop="static"
-        centered
-        size="lg"
-      >
+      <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static" centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Aggiungi esperienza</Modal.Title>
         </Modal.Header>

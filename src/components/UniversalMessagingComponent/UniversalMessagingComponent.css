@@ -1,8 +1,7 @@
 .messagingMenu {
-
   z-index: 1000;
   bottom: 0px;
-  right: 50px;
+  right: 10px;
 }
 
 .messagingMenuUserImage {
@@ -11,11 +10,98 @@
 }
 
 .dimentions {
-  width: 320px;
+  width: 290px;
+}
+
+.barHeight {
+  max-height: 50px;
 }
 
 .accordionHeight {
-  height: 600px;
+  height: 810px;
   padding: 0;
   overflow-y: "auto";
+}
+
+.customAccordion .accordion-button {
+  padding: 5px !important;
+}
+
+.customAccordion,
+.customAccordion .accordion-item,
+.customAccordion .accordion-button {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.messageTextAccordion {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.customAccordion .accordion-button::after {
+  display: none !important;
+}
+
+.accordion-button .icon-open {
+  display: none;
+}
+
+.accordion-button:not(.collapsed) .icon-open {
+  display: block;
+}
+
+.accordion-button:not(.collapsed) .icon-closed {
+  display: none;
+}
+.customAccordion .accordion-button:not(.collapsed) {
+  background-color: #fff;
+  color: #000;
+  box-shadow: none;
+}
+
+.chatSearch:hover {
+  background-color: rgb(232, 239, 245);
+  outline: 2px solid blue;
+  border-radius: 12px;
+}
+
+.chatSearchBar {
+  height: 30px;
+  background-color: rgb(232, 239, 245);
+}
+
+.chatSearchBar::placeholder {
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+.search-active {
+  background-color: rgb(232, 239, 245);
+}
+
+.focus:focus {
+  background-color: rgb(232, 239, 245);
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.sendMessageButton {
+  box-sizing: border-box;
+}
+.sendMessageButton:hover {
+  background-color: rgb(224, 221, 221) !important;
+
+  color: black;
+  box-shadow: inset 0 0 0 1px #333;
+}
+
+.sendMessageButtonText {
+  font-weight: 600;
 }
