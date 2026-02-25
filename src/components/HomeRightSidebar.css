@@ -1,7 +1,7 @@
 ul {
-  list-style-type: none; /* Rimuove i puntini */
-  margin: 0; /* Rimuove margini predefiniti */
-  padding: 0; /* Rimuove padding predefinito */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 li:hover {
   cursor: pointer;
@@ -31,6 +31,6 @@ a {
 
 .parte-sticky {
   position: sticky;
-  top: 20px; /* distanza dal top della viewport */
-  z-index: 10; /* sopra altri elementi se serve */
+  top: 20px;
+  z-index: 10;
 }
