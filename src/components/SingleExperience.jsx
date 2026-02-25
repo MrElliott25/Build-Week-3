@@ -1,5 +1,6 @@
 import { Image, Button } from "react-bootstrap";
 import { Pen, Trash3 } from "react-bootstrap-icons";
+import { deleteExperience } from "../utils/fetch";
 
 const SingleExperience = (props) => {
   //Funzione per calcolare la durata dando startDate e endDate
@@ -41,7 +42,15 @@ const SingleExperience = (props) => {
             >
               <Pen size={20}></Pen>
             </Button>
-            <Button variant="danger">
+            <Button
+              variant="danger"
+              onClick={async () => {
+                if (window.confirm("Sei sicuro di voler eliminare questa esperienza?")) {
+                  await deleteExperience(props.API + props.id);
+                  props.loadData();
+                }
+              }}
+            >
               <Trash3 size={20}></Trash3>
             </Button>
           </div>

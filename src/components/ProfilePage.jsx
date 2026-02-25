@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import ProfileFrontBanner from "./ProfileFrontBanner";
-import SidebarComponent from "./SidebarComponent/SidebarComponent";
+import SidebarComponent from "./HomepageRightSidebarComponent/SidebarComponent";
 
 const ProfilePage = () => {
   return (
