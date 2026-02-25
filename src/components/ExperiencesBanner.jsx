@@ -1,5 +1,5 @@
 import { Button, Form, Row, Col, Spinner, Modal } from "react-bootstrap";
-import { Pen, Plus } from "react-bootstrap-icons";
+import { Plus } from "react-bootstrap-icons";
 import { useState, useEffect } from "react";
 import { fetchExperiences, generateExperience } from "../utils/fetch";
 import { useSelector } from "react-redux";

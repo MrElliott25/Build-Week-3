@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Container, Card, Form, Button } from "react-bootstrap";
-
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUserAction } from "../redux/actions/actions";
 
 const LoginComponent = () => {
   const [loginUsernameValue, setUsernameValue] = useState("");
   const [loginEmailValue, setEmailValue] = useState("");
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const token =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTljMzViMzBiYzFkZTAwMTU3N2I3YjIiLCJpYXQiOjE3NzE4NDUwNDMsImV4cCI6MTc3MzA1NDY0M30.xDkQhPF99LMH1QQLGZm1CfXdTXEBdv9eNrDMotGM09c";
@@ -23,10 +24,14 @@ const LoginComponent = () => {
         else throw new Error("Errore nella pesca dei dati");
       })
       .then((data) => {
-        const loggedUser = data.find((user) => user.email === loginEmailValue.trim() && user.username === loginUsernameValue.trim());
+        const loggedUser = data.find(
+          (user) =>
+            user.email === loginEmailValue.trim() && user.username === loginUsernameValue.trim(),
+        );
         if (loggedUser) {
           dispatch(setUserAction(loggedUser));
           resetForm();
+          navigate("/profile/me");
         } else {
           window.alert("Dati errati inseriti! Controlla bene!");
           resetForm();
