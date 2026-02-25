@@ -1,3 +1,4 @@
+import LoginComponent from "./components/LoginComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/style.css";
 
@@ -15,6 +16,7 @@ import LinkedInNavbar from "./components/LinkedInNavbar";
 import ProfileFrontBanner from "./components/ProfileFrontBanner";
 import ExperiencesBanner from "./components/ExperiencesBanner";
 import HomepageFrontBanner from "./components/HomepageFrontBanner/HomepageFrontBanner";
+import SidebarComponent from "./components/HomepageRightSidebarComponent/SidebarComponent";
 
 const PaginaNonRichiesta = ({ titolo }) => (
   <div className="text-center mt-5 p-5 border rounded bg-white shadow-sm">
@@ -36,7 +38,7 @@ function App() {
           <LinkedInNavbar />
 
           {/* Margini globali */}
-          <div className="container mt-4">
+          <div>
             <Routes>
               {/* Rotta Login */}
               <Route path="/" element={<LoginComponent />} />
@@ -45,18 +47,32 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <div className="row">
+                  <div className="row container mx-auto mt-3">
                     <div className="col-lg-8">
                       <ProfileFrontBanner />
-                      <ExperiencesBanner />
                     </div>
-                    <div className="col-lg-4"></div>
+                    <div className="col-lg-4">
+                      <SidebarComponent />
+                    </div>
+                  </div>
+                }
+              />
+              <Route
+                path="/profile/me"
+                element={
+                  <div className="row container mx-auto mt-3">
+                    <div className="col-lg-8">
+                      <ProfileFrontBanner />
+                    </div>
+                    <div className="col-lg-4">
+                      <SidebarComponent />
+                    </div>
                   </div>
                 }
               />
 
               {/* IL TAPPABUCHI PER LA HOME  */}
-              <Route path="/home" element={<HomepageFrontBanner />} />
+              <Route path="/home" element={<PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />} />
 
               {/* LE PAGINE NON RICHIESTE */}
               <Route path="/network" element={<PaginaNonRichiesta titolo="La tua Rete" />} />

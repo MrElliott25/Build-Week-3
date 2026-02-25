@@ -1,8 +1,15 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Navbar, Container, Form, Nav, NavDropdown } from "react-bootstrap";
 // icone simili a quelle di LinkedIn
-import { FaLinkedin, FaHome, FaUserFriends, FaBriefcase, FaCommentDots, FaBell, FaSearch } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaHome,
+  FaUserFriends,
+  FaBriefcase,
+  FaCommentDots,
+  FaBell,
+  FaSearch,
+} from "react-icons/fa";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 
 const LinkedInNavbar = () => {
@@ -25,7 +32,12 @@ const LinkedInNavbar = () => {
   ];
 
   return (
-    <Navbar bg="light" expand="lg" className="border-bottom sticky-top" style={{ backgroundColor: "#fff", minHeight: "52px" }}>
+    <Navbar
+      bg="light"
+      expand="lg"
+      className={location.pathname === "/" ? "d-none" : "border-bottom sticky-top"}
+      style={{ backgroundColor: "#fff", minHeight: "52px" }}
+    >
       <Container>
         <Navbar.Brand as={Link} to="/home" className="me-2">
           <FaLinkedin size={36} color="#0a66c2" />
@@ -36,7 +48,13 @@ const LinkedInNavbar = () => {
             <div className="px-2 text-secondary">
               <FaSearch size={16} />
             </div>
-            <Form.Control type="search" placeholder="Cerca" className="bg-tertiary border-0 rounded-5" style={{ minWidth: "250px" }} aria-label="Search" />
+            <Form.Control
+              type="search"
+              placeholder="Cerca"
+              className="bg-tertiary border-0 rounded-5"
+              style={{ minWidth: "250px" }}
+              aria-label="Search"
+            />
           </Form>
         </div>
 
@@ -62,10 +80,16 @@ const LinkedInNavbar = () => {
               <img
                 src={currentUser.image}
                 alt="profile"
-                style={{ width: "24px", height: "24px", borderRadius: "50%", objectFit: "cover", marginBottom: "-4px" }}
+                style={{
+                  width: "24px",
+                  height: "24px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  marginBottom: "-4px",
+                }}
               />
               <NavDropdown title="Tu" id="basic-nav-dropdown" style={{ fontSize: "12px" }}>
-                <NavDropdown.Item as={Link} to="/profile">
+                <NavDropdown.Item as={Link} to="/profile/me">
                   Visualizza Profilo ({currentUser.name})
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
