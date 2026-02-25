@@ -21,7 +21,7 @@ export const fetchExperiences = async (experiencesAPI) => {
   }
 };
 
-//Funzione che fa la POST per le experience
+//Funzione che fa la POST o la PUT per le experience
 export const generateExperience = async (newExperience, experiencesAPI, method) => {
   fetch(experiencesAPI, {
     method: method,
@@ -47,4 +47,20 @@ export const generateExperience = async (newExperience, experiencesAPI, method) 
     });
 };
 
-//TO DO: DELETE FETCH
+//Funzione per fare la DELETE di una specifica experience
+
+export const deleteExperience = async (experiencesAPI) => {
+  fetch(experiencesAPI, {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => {
+      if (res.ok) alert("Esperienza eliminata con successo!");
+      else throw new Error("Errore durante l'eliminazione della task.");
+    })
+    .catch((err) => {
+      console.log("Errore! -> " + err);
+    });
+};
