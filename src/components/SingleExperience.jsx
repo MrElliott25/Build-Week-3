@@ -44,9 +44,11 @@ const SingleExperience = (props) => {
             </Button>
             <Button
               variant="danger"
-              onClick={() => {
-                if (window.confirm("Sei sicuro di voler eliminare questa esperienza?"))
-                  deleteExperience(props.API + props.id);
+              onClick={async () => {
+                if (window.confirm("Sei sicuro di voler eliminare questa esperienza?")) {
+                  await deleteExperience(props.API + props.id);
+                  props.loadData();
+                }
               }}
             >
               <Trash3 size={20}></Trash3>
