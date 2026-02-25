@@ -1,34 +1,87 @@
-import { Button, Image } from "react-bootstrap";
-import { ArrowRepeat, ChatText, HandThumbsUp, HandThumbsUpFill, HeartFill, LightbulbFill, PersonFillAdd, Send } from "react-bootstrap-icons";
+import { Button, Col, Image, Row } from "react-bootstrap";
+import { ArrowRepeat, ChatText, HandThumbsUp, HandThumbsUpFill, HeartFill, LightbulbFill, Pencil, PersonFillAdd, Send, X } from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
+import { deletePostAction } from "../../redux/actions/postsActions";
+import { deletePost } from "../../utils/postsFetch";
 
-const SinglePost = function () {
+const SinglePost = function (props) {
+  const dispatch = useDispatch();
   const ImagePH = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
 
+  const MY_USER_ID = "699c35b30bc1de001577b7b2";
+
+  let ownerId = null;
+
+  if (props.post.user) {
+    if (typeof props.post.user === "string") {
+      ownerId = props.post.user;
+    } else {
+      ownerId = props.post.user._id;
+    }
+  }
+
+  const isMyPost = ownerId === MY_USER_ID;
+
+  const handleDelete = function () {
+    deletePost(props.postsAPI, props.post._id)
+      .then(() => {
+        dispatch(deletePostAction(props.post._id));
+      })
+      .catch((err) => {
+        alert("Errore: " + err.message);
+      });
+  };
+
+  const handleEdit = function () {
+    if (!props.onEdit) return;
+    props.onEdit(props.post);
+  };
+
   return (
-    <div className=" p-3 rounded border border-black border-opacity-10  w-100 mt-4">
+    <div className=" px-2 py-3 p-md-3 rounded border border-black border-opacity-10 w-100 mt-4">
+      <div className=" d-flex mb-3 justify-content-end gap-3">
+        <p className=" mb-0 me-auto text-muted">Pubblicato: {props.post.updatedAt ? props.post.updatedAt.slice(0, 10) : "-"}</p>
+        {isMyPost && (
+          <>
+            <Button className="p-0" variant="light" size="sm" onClick={handleEdit}>
+              <Pencil size={20} />
+            </Button>
+            <Button className="p-0" variant="light" size="sm" onClick={handleDelete}>
+              <X size={20} />
+            </Button>
+          </>
+        )}
+      </div>
+
       {/* Strip Utente */}
-      <div className=" d-flex gap-3">
-        <Image roundedCircle src={ImagePH} style={{ maxHeight: "60px" }} />
-        <div className=" d-flex flex-column flex-wrap">
-          <h4 className="mb-0">Nome Utente</h4>
-          <p className="mb-0 text-muted text-truncate" style={{ fontSize: "0.8rem" }}>
-            Bio/Ruolo Utente
+      <Row className="g-0 g-lg-2">
+        <Col xs="2">
+          <Image
+            roundedCircle
+            src={props.post.user.image ? props.post.user.image : ImagePH}
+            style={{ maxHeight: "60px", maxWidth: "60px", objectFit: "cover", aspectRatio: 1 }}
+          />
+        </Col>
+        <Col xs="6" className=" d-flex flex-column p-0" style={{ minWidth: 0 }}>
+          <h4 className="mb-0 text-break">
+            {props.post.user.name && props.post.user.surname ? props.post.user.name + " " + props.post.user.surname : props.post.username}
+          </h4>
+          <p className="mb-0 text-muted" style={{ fontSize: "0.8rem" }}>
+            {props.post.user.title ? props.post.user.title : "Generic User"}
           </p>
-        </div>
-        <div className=" ms-auto">
+        </Col>
+        <Col xs="4" className="px-0 d-flex justify-content-end align-items-start">
           <Button variant="light" className=" d-flex gap-2 text-primary fw-bold">
             <PersonFillAdd size={20} /> Collegati
           </Button>
-        </div>
-      </div>
+        </Col>
+      </Row>
       {/* Fine Strip Utente */}
 
       {/* Post Text */}
-      <div className=" mt-3 px-2">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla sunt officiis sequi praesentium sit odit quia delectus, harum quis excepturi totam!
-          Accusantium ipsam commodi omnis vel maxime eaque, mollitia accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla sunt officiis
-          sequi praesentium sit odit quia delectus, harum quis excepturi totam! Accusantium ipsam commodi omnis vel maxime eaque, mollitia accusamus!
+      <div className=" mb-5 mt-3 px-1">
+        <p className="mb-0" style={{ fontSize: "1.1rem" }}>
+          {props.post.text}
         </p>
       </div>
 

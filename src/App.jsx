@@ -14,6 +14,7 @@ import LoginComponent from "./components/LoginComponent";
 import LinkedInNavbar from "./components/LinkedInNavbar";
 import ProfileFrontBanner from "./components/ProfileFrontBanner";
 import ExperiencesBanner from "./components/ExperiencesBanner";
+import HomepageFrontBanner from "./components/HomepageFrontBanner/HomepageFrontBanner";
 
 const PaginaNonRichiesta = ({ titolo }) => (
   <div className="text-center mt-5 p-5 border rounded bg-white shadow-sm">
@@ -55,7 +56,7 @@ function App() {
               />
 
               {/* IL TAPPABUCHI PER LA HOME  */}
-              <Route path="/home" element={<PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />} />
+              <Route path="/home" element={<HomepageFrontBanner />} />
 
               {/* LE PAGINE NON RICHIESTE */}
               <Route path="/network" element={<PaginaNonRichiesta titolo="La tua Rete" />} />
