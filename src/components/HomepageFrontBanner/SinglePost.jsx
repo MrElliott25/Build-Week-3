@@ -1,10 +1,26 @@
 import { Button, Col, Image, Row } from "react-bootstrap";
 import { ArrowRepeat, ChatText, HandThumbsUp, HandThumbsUpFill, HeartFill, LightbulbFill, Pencil, PersonFillAdd, Send, X } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deletePostAction } from "../../redux/actions/postsActions";
 import { deletePost } from "../../utils/postsFetch";
+import CommentList from "./CommentList";
+import { useState } from "react";
 
 const SinglePost = function (props) {
+  const comments = useSelector((currentState) => currentState.comments.content);
+
+  let commentsForThisPost = [];
+
+  if (comments && props.postID) {
+    commentsForThisPost = comments.filter((comment) => comment.elementId === props.postID);
+  }
+
+  const [showComments, setShowComments] = useState(false);
+
+  const toggleComments = function () {
+    setShowComments(!showComments);
+  };
+
   const dispatch = useDispatch();
   const ImagePH = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
 
@@ -94,11 +110,19 @@ const SinglePost = function (props) {
         </div>
 
         <div className=" d-flex align-items-center">
-          <p className="mb-0" style={{ fontSize: "0.9rem" }}>
-            <span> 104 Commenti </span>
-            <span> &bull; </span>
-            <span>208 diffusioni post </span>
-          </p>
+          {commentsForThisPost.length > 0 ? (
+            <>
+              <p className="mb-0 d-flex gap-1" style={{ fontSize: "0.9rem" }}>
+                <span>
+                  {commentsForThisPost.length} {commentsForThisPost.length === 1 ? "Commento" : "Commenti"}
+                </span>
+                <span> &bull; </span>
+                <span>{commentsForThisPost.length * 5} diffusioni post </span>
+              </p>
+            </>
+          ) : (
+            <p className="mb-0">Nessun commento</p>
+          )}
         </div>
       </div>
 
@@ -109,7 +133,7 @@ const SinglePost = function (props) {
           <HandThumbsUp />
           <p className=" mb-0"> Consiglia</p>
         </Button>
-        <Button variant="light" className=" d-flex flex-column align-items-center">
+        <Button variant="light" className=" d-flex flex-column align-items-center" onClick={toggleComments}>
           <ChatText />
           <p className=" mb-0"> Commenta</p>
         </Button>
@@ -122,6 +146,12 @@ const SinglePost = function (props) {
           <p className=" mb-0">Invia</p>
         </Button>
       </div>
+
+      {showComments && (
+        <div className="mt-3">
+          <CommentList postID={props.post._id} commentsForThisPost={commentsForThisPost} />
+        </div>
+      )}
     </div>
   );
 };

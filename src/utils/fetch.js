@@ -90,9 +90,9 @@ const commentAPItoken =
 
 const commentAPI = "https://striveschool-api.herokuapp.com/api/comments/";
 
-export const fetchComments = async (postId) => {
+export const fetchComments = async () => {
   try {
-    const res = await fetch(commentAPI + postId, {
+    const res = await fetch(commentAPI, {
       headers: {
         Authorization: commentAPItoken,
       },

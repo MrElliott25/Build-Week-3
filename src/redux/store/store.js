@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import localStorage from "redux-persist/lib/storage";
 import { userReducer } from "../reducers/userReducer";
 import { postsReducer } from "../reducers/postsReducer";
+import { commentsReducer } from "../reducers/commentsReducer";
 
 const persistConfig = {
   storage: localStorage,
@@ -13,6 +14,7 @@ const persistConfig = {
 const mainReducer = combineReducers({
   user: userReducer,
   posts: postsReducer,
+  comments: commentsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, mainReducer);

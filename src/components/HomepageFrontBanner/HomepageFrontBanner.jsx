@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Col, Spinner, Alert } from "react-bootstrap";
+import { Spinner, Alert } from "react-bootstrap";
 import SinglePost from "./SinglePost";
 import NewPostSection from "./NewPostSection";
 import CreatePost from "./CreatePost";
 
 import { fetchPosts } from "../../utils/postsFetch";
 import { SetPostsAction, setPostsLoadingAction, setPostsErrorAction } from "../../redux/actions/postsActions";
+import { fetchComments } from "../../utils/fetch";
+import { setCommentsAction, setCommentsLoadingAction, setCommentsErrorAction } from "../../redux/actions/commentActions";
 import EditPost from "./EditPost";
 
 const POSTS_API = "https://striveschool-api.herokuapp.com/api/posts";
@@ -35,12 +37,13 @@ const HomepageFrontBanner = function () {
     setShowEdit(true);
   };
 
+  // post UseEffect
   useEffect(() => {
     dispatch(setPostsLoadingAction(true));
 
     fetchPosts(POSTS_API)
       .then((data) => {
-        const limitedPosts = data.slice(0, 10);
+        const limitedPosts = data.slice(50, 80);
         dispatch(SetPostsAction(limitedPosts));
         dispatch(setPostsErrorAction(null));
 
@@ -49,6 +52,22 @@ const HomepageFrontBanner = function () {
       .catch((err) => {
         dispatch(setPostsErrorAction(err.message));
         dispatch(setPostsLoadingAction(false));
+      });
+  }, [dispatch]);
+
+  // comments UseEffect
+  useEffect(() => {
+    dispatch(setCommentsLoadingAction(true));
+
+    fetchComments()
+      .then((data) => {
+        dispatch(setCommentsAction(data));
+        dispatch(setCommentsErrorAction(null));
+        dispatch(setCommentsLoadingAction(false));
+      })
+      .catch((err) => {
+        dispatch(setCommentsErrorAction(err.message));
+        dispatch(setCommentsLoadingAction(false));
       });
   }, [dispatch]);
 
@@ -63,7 +82,7 @@ const HomepageFrontBanner = function () {
       {error && <Alert variant="danger">{error}</Alert>}
 
       {posts.map((post) => {
-        return <SinglePost key={post._id} post={post} postsAPI={POSTS_API} onEdit={openEdit} />;
+        return <SinglePost key={post._id} post={post} postsAPI={POSTS_API} onEdit={openEdit} postID={post._id} />;
       })}
     </div>
   );
