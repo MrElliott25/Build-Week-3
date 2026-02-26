@@ -1,4 +1,4 @@
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import ProfileLeftSecondSectionSidebarComponent from "./ProfileLeftSecondSectionSidebarComponent/ProfileLeftSecondSectionSidebarComponent";
 import "./ProfileLeftSidebarComponent.css";
 import ProfileLeftSidebarHeaderComponent from "./ProfileLeftSidebarHeaderComponent/ProfileLeftSidebarHeaderComponent";
@@ -12,21 +12,17 @@ function ProfileLeftSidebarComponent() {
   };
 
   return (
-    <>
-      <Col>
-        <ProfileLeftSidebarHeaderComponent
-          name={profileUser.name}
-          occupation={profileUser.occupation}
-          provenance={profileUser.provenance}
-        />
+    <Row className=" g-3 w-100">
+      <Col xs={12} className=" d-flex justify-content-center">
+        <ProfileLeftSidebarHeaderComponent name={profileUser.name} occupation={profileUser.occupation} provenance={profileUser.provenance} />
       </Col>
-      <Col className="mt-3">
+      <Col xs={12} className="mt-3 d-flex justify-content-center">
         <ProfileLeftSecondSectionSidebarComponent />
       </Col>
-      <Col className="mt-3">
- <ProfileLeftThirdSectionSidebarComponent />
+      <Col xs={12} className="mt-3 d-flex justify-content-center">
+        <ProfileLeftThirdSectionSidebarComponent />
       </Col>
-    </>
+    </Row>
   );
 }
 

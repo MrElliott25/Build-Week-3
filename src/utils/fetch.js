@@ -1,5 +1,5 @@
 //TOKEN DI STEFANO
-const token =
+export const token =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTljMzViMzBiYzFkZTAwMTU3N2I3YjIiLCJpYXQiOjE3NzE4NDUwNDMsImV4cCI6MTc3MzA1NDY0M30.xDkQhPF99LMH1QQLGZm1CfXdTXEBdv9eNrDMotGM09c";
 
 
@@ -23,11 +23,7 @@ export const fetchExperiences = async (experiencesAPI) => {
 };
 
 //Funzione che fa la POST o la PUT per le experience
-export const generateExperience = async (
-  newExperience,
-  experiencesAPI,
-  method,
-) => {
+export const generateExperience = async (newExperience, experiencesAPI, method) => {
   fetch(experiencesAPI, {
     method: method,
     headers: {
@@ -85,5 +81,85 @@ export const workPageFetch = async (workAPI) => {
   } catch (err) {
     console.error("Errore! -> " + err);
     return [];
+  }
+};
+
+// ----------------------------- FETCH DEI COMMENTI -----------------------------------
+
+const commentAPItoken =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTczM2Y4Njg1ZTNiMTAwMTViNWVkOTkiLCJpYXQiOjE3NzIxMDUxNDYsImV4cCI6MTc3MzMxNDc0Nn0.JTAxQkYGcICpVSI4mkoBkqxV_S5SFdhAGU_QZ39fDic";
+
+const commentAPI = "https://striveschool-api.herokuapp.com/api/comments/";
+
+export const fetchComments = async (postId) => {
+  try {
+    const res = await fetch(commentAPI + postId, {
+      headers: {
+        Authorization: commentAPItoken,
+      },
+    });
+    if (!res.ok) throw new Error("Errore nella pesca dei commenti!");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Errore! -> " + err);
+    return [];
+  }
+};
+
+export const generateComment = async (method, post) => {
+  try {
+    const res = await fetch(commentAPI, {
+      method: method,
+      headers: {
+        Authorization: commentAPItoken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post),
+    });
+
+    if (!res.ok) throw new Error("Errore nel salvataggio del commento.");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log("Errore! -> " + err);
+  }
+};
+
+export const deleteComment = async (postId) => {
+  try {
+    const res = await fetch(commentAPI + postId, {
+      method: "DELETE",
+      headers: {
+        Authorization: commentAPItoken,
+      },
+    });
+    if (!res.ok) throw new Error("Errore nell'eliminazione del commento");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Errore! -> " + err);
+  }
+};
+
+// -------------------- IMMAGINI ----------------------------
+
+export const updateImage = async (api, file) => {
+  const formData = new FormData();
+  formData.append("profile", file);
+  try {
+    const res = await fetch(api, {
+      method: "POST",
+      headers: {
+        Authorization: token,
+      },
+      body: formData,
+    });
+
+    if (!res.ok) throw new Error("Errore nel salvataggio del commento.");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log("Errore! -> " + err);
   }
 };

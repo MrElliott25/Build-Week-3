@@ -21,15 +21,16 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-
-  outline: 2px solid white;
+  border: 3px solid white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .profileSidebarCardSecondSection {
-  position: absolute;
   margin-top: 60px;
 }
-
 
 .fontsizeDescriptionText {
   margin: 0;
@@ -55,7 +56,7 @@
 }
 
 .experienceText:hover {
-  outline: 2px dashed  rgb(52, 91, 126);
+  outline: 2px dashed rgb(52, 91, 126);
   background-color: rgb(218, 218, 218);
 }
 

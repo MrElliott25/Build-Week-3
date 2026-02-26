@@ -38,7 +38,7 @@ const SinglePost = function (props) {
   };
 
   return (
-    <div className=" px-2 py-3 p-md-3 rounded border border-black border-opacity-10 w-100 mt-4">
+    <div className=" px-2 py-3 p-md-3 rounded border border-black border-opacity-10 w-100 mt-4 shadow-sm">
       <div className=" d-flex mb-3 justify-content-end gap-3">
         <p className=" mb-0 me-auto text-muted">Pubblicato: {props.post.updatedAt ? props.post.updatedAt.slice(0, 10) : "-"}</p>
         {isMyPost && (
