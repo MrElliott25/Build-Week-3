@@ -18,15 +18,14 @@ import HomepageFrontBanner from "./components/HomepageFrontBanner/HomepageFrontB
 import SidebarComponent from "./components/HomepageRightSidebarComponent/SidebarComponent";
 import { AppContextProvider } from "../AppContextProvider/AppContextProvider";
 import UniversalMessagingComponent from "./components/UniversalMessagingComponent/UniversalMessagingComponent";
+import WorkPage from "./components/WorkPage";
 
 const PaginaNonRichiesta = ({ titolo }) => (
   <div className="text-center mt-5 p-5 border rounded bg-white shadow-sm">
     <h2 style={{ color: "#0a66c2" }} className="fw-bold">
       {titolo}
     </h2>
-    <p className="text-muted mt-3">
-      Funzionalità non richiesta per le specifiche di questa Build Week.
-    </p>
+    <p className="text-muted mt-3">Funzionalità non richiesta per le specifiche di questa Build Week.</p>
   </div>
 );
 
@@ -77,40 +76,16 @@ function App() {
                 />
 
                 {/* IL TAPPABUCHI PER LA HOME  */}
-                <Route
-                  path="/home"
-                  element={
-                    <PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />
-                  }
-                />
+                <Route path="/home" element={<PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />} />
 
                 {/* LE PAGINE NON RICHIESTE */}
-                <Route
-                  path="/network"
-                  element={<PaginaNonRichiesta titolo="La tua Rete" />}
-                />
-                <Route
-                  path="/jobs"
-                  element={<PaginaNonRichiesta titolo="Offerte di Lavoro" />}
-                />
-                <Route
-                  path="/messaging"
-                  element={<PaginaNonRichiesta titolo="Messaggistica" />}
-                />
-                <Route
-                  path="/notifications"
-                  element={<PaginaNonRichiesta titolo="Notifiche" />}
-                />
+                <Route path="/network" element={<PaginaNonRichiesta titolo="La tua Rete" />} />
+                <Route path="/jobs" element={<WorkPage />} />
+                <Route path="/messaging" element={<PaginaNonRichiesta titolo="Messaggistica" />} />
+                <Route path="/notifications" element={<PaginaNonRichiesta titolo="Notifiche" />} />
 
                 {/* ROTTA 404 */}
-                <Route
-                  path="*"
-                  element={
-                    <h1 className="text-center mt-5 text-danger">
-                      404 - Sparisci
-                    </h1>
-                  }
-                />
+                <Route path="*" element={<h1 className="text-center mt-5 text-danger">404 - Sparisci</h1>} />
               </Routes>
             </div>
           </AppContextProvider>
