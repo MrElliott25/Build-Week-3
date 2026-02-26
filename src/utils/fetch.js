@@ -1,5 +1,5 @@
 //TOKEN DI STEFANO
-const token =
+export const token =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTljMzViMzBiYzFkZTAwMTU3N2I3YjIiLCJpYXQiOjE3NzE4NDUwNDMsImV4cCI6MTc3MzA1NDY0M30.xDkQhPF99LMH1QQLGZm1CfXdTXEBdv9eNrDMotGM09c";
 
 //Funzione che mi serve per recuperare le experience da generare dinamicamente
@@ -138,5 +138,27 @@ export const deleteComment = async (postId) => {
     return data;
   } catch (err) {
     console.error("Errore! -> " + err);
+  }
+};
+
+// -------------------- IMMAGINI ----------------------------
+
+export const updateImage = async (api, file) => {
+  const formData = new FormData();
+  formData.append("profile", file);
+  try {
+    const res = await fetch(api, {
+      method: "POST",
+      headers: {
+        Authorization: token,
+      },
+      body: formData,
+    });
+
+    if (!res.ok) throw new Error("Errore nel salvataggio del commento.");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log("Errore! -> " + err);
   }
 };

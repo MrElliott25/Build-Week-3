@@ -85,7 +85,10 @@ const HomeRightSidebar = function () {
                   }}
                 >
                   <Alert onClose={() => setInfo(false)} dismissible className="py-1">
-                    <p className="m-0">Queste sono le principali notizie e conversazioni del giorno. Scopri come vengono selezionate.</p>
+                    <p className="m-0">
+                      Queste sono le principali notizie e conversazioni del giorno. Scopri come
+                      vengono selezionate.
+                    </p>
                   </Alert>
                 </div>
               )}
@@ -105,7 +108,11 @@ const HomeRightSidebar = function () {
             </ul>
             {/* tasto mostra altro */}
             {news.length > 5 && (
-              <Button variant="link" className="p-0 text-dark fw-semibold" onClick={() => setShowAll(!showAll)}>
+              <Button
+                variant="link"
+                className="p-0 text-dark fw-semibold"
+                onClick={() => setShowAll(!showAll)}
+              >
                 {showAll ? "Mostra meno ▲" : "Mostra altro ▼"}
               </Button>
             )}
@@ -120,7 +127,8 @@ const HomeRightSidebar = function () {
             <img
               src="https://media.licdn.com/media/AAYAAQTPAAgAAQAAAAAAADBJg6kiYYJxTUOBq1MuLPcNcQ.png"
               alt="linke"
-              className="img-fluid rounded-4 pointer mt-3 "
+              className="img-fluid rounded-4 pointer"
+              style={{ marginTop: "5rem" }}
             />
           </a>
         </div>
