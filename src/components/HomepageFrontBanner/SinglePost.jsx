@@ -12,7 +12,7 @@ const SinglePost = function (props) {
   let commentsForThisPost = [];
 
   if (comments && props.postID) {
-    commentsForThisPost = comments.filter((comment) => comment.elementId === props.postID);
+    commentsForThisPost = comments.filter((comment) => comment?.elementId === props.postID);
   }
 
   const [showComments, setShowComments] = useState(false);

@@ -125,9 +125,30 @@ export const generateComment = async (method, post) => {
   }
 };
 
-export const deleteComment = async (postId) => {
+export const modifyComment = function (commentId, payload) {
+  return fetch(commentAPI + commentId, {
+    method: "PUT",
+    headers: {
+      Authorization: commentAPItoken,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Errore nella modifica del commento.");
+      }
+    })
+    .then((data) => {
+      return data;
+    });
+};
+
+export const deleteComment = async (commentId) => {
   try {
-    const res = await fetch(commentAPI + postId, {
+    const res = await fetch(commentAPI + commentId, {
       method: "DELETE",
       headers: {
         Authorization: commentAPItoken,

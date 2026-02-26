@@ -1,4 +1,4 @@
-import { SET_COMMENTS, SET_COMMENTS_LOADING, SET_COMMENTS_ERROR, ADD_COMMENT } from "../actions/commentActions";
+import { SET_COMMENTS, SET_COMMENTS_LOADING, SET_COMMENTS_ERROR, ADD_COMMENT, MODIFY_COMMENT, DELETE_COMMENT } from "../actions/commentActions";
 
 const initialState = {
   content: [],
@@ -30,6 +30,24 @@ export const commentsReducer = function (currentState = initialState, action) {
       return {
         ...currentState,
         content: [action.payload, ...currentState.content],
+      };
+
+    case MODIFY_COMMENT:
+      return {
+        ...currentState,
+        content: currentState.content.map((c) => {
+          if (c && c._id === action.payload._id) {
+            return action.payload;
+          } else {
+            return c;
+          }
+        }),
+      };
+
+    case DELETE_COMMENT:
+      return {
+        ...currentState,
+        content: currentState.content.filter((c) => c && c._id !== action.payload),
       };
 
     default:

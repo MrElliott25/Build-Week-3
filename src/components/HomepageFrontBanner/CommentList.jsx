@@ -3,7 +3,7 @@ import SingleComment from "./SingleComment";
 import { Alert, Button, Form, Spinner } from "react-bootstrap";
 import { addCommentAction } from "../../redux/actions/commentActions";
 import { generateComment } from "../../utils/fetch";
-import { use, useState } from "react";
+import { useState } from "react";
 
 const CommentList = function (props) {
   const dispatch = useDispatch();
