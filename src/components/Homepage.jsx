@@ -15,7 +15,7 @@ const Homepage = function () {
           <HomepageFrontBanner />
         </Col>
 
-        <Col xs="12" lg="3">
+        <Col xs="12" lg="3" className="my-4 my-lg-0">
           <HomeRightSidebar />
         </Col>
       </Row>
