@@ -1,9 +1,8 @@
 import { Button, Image } from "react-bootstrap";
 import { CardImage, PlayBtnFill, CardText } from "react-bootstrap-icons";
+import profileImg from "../../assets/media/placeholderProfile.jpg";
 
 const NewPostSection = function (props) {
-  const profileImg = "https://placecats.com/100/100";
-
   return (
     <div className=" p-3 rounded border border-black border-opacity-10 w-100 shadow-sm">
       <div className=" d-flex gap-3 align-items-center">
