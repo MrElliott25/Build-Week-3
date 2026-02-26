@@ -11,7 +11,7 @@ function ProfileLeftSidebarHeaderComponent({ name, occupation, provenance }) {
           <Row>
             <Col xs={12} className="d-flex justify-content-center">
               
-              <Col xs={10} className="profileSidebarCardSecondSection">
+              <Col xs={10} className="profileSidebarCardSecondSection position-relative">
                 <img src={img} alt="placeholder" className="profileSidebarCardPlaceholder" />
                 <Col className="mt-2">
                   <h3 className="bold ellipsisText ">{name}</h3>

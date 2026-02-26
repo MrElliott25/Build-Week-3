@@ -22,7 +22,11 @@ export const fetchExperiences = async (experiencesAPI) => {
 };
 
 //Funzione che fa la POST o la PUT per le experience
-export const generateExperience = async (newExperience, experiencesAPI, method) => {
+export const generateExperience = async (
+  newExperience,
+  experiencesAPI,
+  method,
+) => {
   fetch(experiencesAPI, {
     method: method,
     headers: {
@@ -63,4 +67,22 @@ export const deleteExperience = async (experiencesAPI) => {
     .catch((err) => {
       console.log("Errore! -> " + err);
     });
+};
+
+// funzione che mi serve per recuperare i dati per la WorkPage
+
+export const workPageFetch = async (workAPI) => {
+  try {
+    const response = await fetch(workAPI, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (!response.ok) throw new Error("Errore nella pesca dei lavori");
+    const dato = await response.json();
+    return dato;
+  } catch (err) {
+    console.error("Errore! -> " + err);
+    return [];
+  }
 };
