@@ -19,7 +19,7 @@ const ExperiencesBanner = function () {
   const location = useLocation();
 
   const userID = useSelector((currentState) => {
-    return currentState.user._id;
+    return currentState.user.user._id;
   });
 
   const experiencesAPI = `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`;

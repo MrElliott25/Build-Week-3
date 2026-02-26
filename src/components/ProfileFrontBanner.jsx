@@ -12,12 +12,14 @@ const ProfileFrontBanner = function () {
   const [interessi, setInteressi] = useState("aziende");
   const { populateProfile, setPopulateProfile } = useContext(AppContext);
 
-  const profileData = useSelector((state) => state.user);
+  const profileData = useSelector((state) => state.user.user);
 
   useEffect(() => {
     setPopulateProfile(profileData);
+
+    console.log(profileData);
     console.log(populateProfile);
-  }, [populateProfile]);
+  }, [profileData]);
 
   return populateProfile ? (
     <Container>
@@ -51,11 +53,11 @@ const ProfileFrontBanner = function () {
               <div className="d-lg-flex">
                 <div className="pt-2">
                   {/* nome e cognome */}
-                  <h2>{populateProfile.name} {populateProfile.surname}</h2>
+                  <h2>
+                    {populateProfile.name} {populateProfile.surname}
+                  </h2>
                   {/* esperienze */}
-                  <p className="mb-1">
-                    {populateProfile.title}
-                  </p>
+                  <p className="mb-1">{populateProfile.title}</p>
                 </div>
                 {/* ul per mettere aziende o studi frequentati */}
                 <ul className="ms-lg-auto list-unstyled mb-2 mb-lg-0">
