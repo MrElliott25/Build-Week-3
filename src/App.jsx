@@ -19,6 +19,7 @@ import SidebarComponent from "./components/HomepageRightSidebarComponent/Sidebar
 import { AppContextProvider } from "../AppContextProvider/AppContextProvider";
 import UniversalMessagingComponent from "./components/UniversalMessagingComponent/UniversalMessagingComponent";
 import WorkPage from "./components/WorkPage";
+import Homepage from "./components/Homepage";
 
 const PaginaNonRichiesta = ({ titolo }) => (
   <div className="text-center mt-5 p-5 border rounded bg-white shadow-sm">
@@ -76,7 +77,7 @@ function App() {
                 />
 
                 {/* IL TAPPABUCHI PER LA HOME  */}
-                <Route path="/home" element={<PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />} />
+                <Route path="/home" element={<Homepage titolo="Feed della Home (In Costruzione)" />} />
 
                 {/* LE PAGINE NON RICHIESTE */}
                 <Route path="/network" element={<PaginaNonRichiesta titolo="La tua Rete" />} />

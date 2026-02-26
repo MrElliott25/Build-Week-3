@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Col, Row, Spinner, Alert } from "react-bootstrap";
+import { Col, Spinner, Alert } from "react-bootstrap";
 import SinglePost from "./SinglePost";
 import NewPostSection from "./NewPostSection";
 import CreatePost from "./CreatePost";
@@ -54,22 +54,18 @@ const HomepageFrontBanner = function () {
 
   console.log("POSTS in Redux:", posts);
   return (
-    <Row>
-      <Col></Col>
-      <Col className="d-flex flex-column align-items-center">
-        <NewPostSection onOpen={() => setShowModal(true)} postsAPI={POSTS_API} />
-        <CreatePost show={showModal} onClose={() => setShowModal(false)} postsAPI={POSTS_API} />
-        <EditPost show={showEdit} onClose={() => setShowEdit(false)} post={postToEdit} postsAPI={POSTS_API} />
+    <div className="d-flex flex-column align-items-center">
+      <NewPostSection onOpen={() => setShowModal(true)} postsAPI={POSTS_API} />
+      <CreatePost show={showModal} onClose={() => setShowModal(false)} postsAPI={POSTS_API} />
+      <EditPost show={showEdit} onClose={() => setShowEdit(false)} post={postToEdit} postsAPI={POSTS_API} />
 
-        {isLoading && <Spinner className="my-5" animation="grow" />}
-        {error && <Alert variant="danger">{error}</Alert>}
+      {isLoading && <Spinner className="my-5" animation="grow" />}
+      {error && <Alert variant="danger">{error}</Alert>}
 
-        {posts.map((post) => {
-          return <SinglePost key={post._id} post={post} postsAPI={POSTS_API} onEdit={openEdit} />;
-        })}
-      </Col>
-      <Col></Col>
-    </Row>
+      {posts.map((post) => {
+        return <SinglePost key={post._id} post={post} postsAPI={POSTS_API} onEdit={openEdit} />;
+      })}
+    </div>
   );
 };
 

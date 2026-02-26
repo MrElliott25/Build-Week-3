@@ -82,15 +82,10 @@ const HomeRightSidebar = function () {
                     // left: "290px",
                     right: "30px",
                     top: "-1px",
-                  }}>
-                  <Alert
-                    onClose={() => setInfo(false)}
-                    dismissible
-                    className="py-1">
-                    <p className="m-0">
-                      Queste sono le principali notizie e conversazioni del
-                      giorno. Scopri come vengono selezionate.
-                    </p>
+                  }}
+                >
+                  <Alert onClose={() => setInfo(false)} dismissible className="py-1">
+                    <p className="m-0">Queste sono le principali notizie e conversazioni del giorno. Scopri come vengono selezionate.</p>
                   </Alert>
                 </div>
               )}
@@ -101,9 +96,7 @@ const HomeRightSidebar = function () {
                 <li key={index} className="glow-btn list-unstyled mb-2">
                   <a href={item.link}>
                     <div>
-                      <h5 className="text-truncate m-0 fw-semibold">
-                        {item.titolo}
-                      </h5>
+                      <h5 className="text-truncate m-0 fw-semibold">{item.titolo}</h5>
                     </div>
                     <span>{item.info}</span>
                   </a>
@@ -112,10 +105,7 @@ const HomeRightSidebar = function () {
             </ul>
             {/* tasto mostra altro */}
             {news.length > 5 && (
-              <Button
-                variant="link"
-                className="p-0 text-dark fw-semibold"
-                onClick={() => setShowAll(!showAll)}>
+              <Button variant="link" className="p-0 text-dark fw-semibold" onClick={() => setShowAll(!showAll)}>
                 {showAll ? "Mostra meno ▲" : "Mostra altro ▼"}
               </Button>
             )}
@@ -135,9 +125,7 @@ const HomeRightSidebar = function () {
           </a>
         </div>
         {/* mini footer */}
-        <div
-          id="miniFooter"
-          className="d-flex flex-wrap  justify-content-center mt-2">
+        <div id="miniFooter" className="d-flex flex-wrap  justify-content-center mt-2">
           <a href="#" className="me-3 ">
             informazioni
           </a>
@@ -166,8 +154,7 @@ const HomeRightSidebar = function () {
             Altro
           </a>
         </div>
-        <div className="d-flex justify-content-center mt-3">
-          {" "}
+        <div className="d-flex flex-column align-items-center mt-3">
           <h6 style={{ color: "#0a66c2", fontWeight: "bold" }}>
             Linked
             <span
@@ -176,7 +163,8 @@ const HomeRightSidebar = function () {
                 color: "#fff",
                 padding: "0 4px",
                 borderRadius: "3px",
-              }}>
+              }}
+            >
               in
             </span>
           </h6>
