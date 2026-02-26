@@ -8,9 +8,8 @@ import { VscSettings } from "react-icons/vsc";
 import { useContext } from "react";
 import { AppContext } from "../../assets/contexts/context";
 
-
 function UniversalMessagingComponent() {
-const { populateProfile } = useContext(AppContext);
+  const { populateProfile } = useContext(AppContext);
   return (
     <>
       <Container fluid>
@@ -43,11 +42,7 @@ const { populateProfile } = useContext(AppContext);
                         <span className="input-group-text border-end-0 chatSearchBar align-items-center">
                           <IoSearch className="pointer" />
                         </span>
-                        <input
-                          className="form-control border-start-0 border-end-0 chatSearchBar focus"
-                          type="text"
-                          placeholder="Cerca Messaggi"
-                        />
+                        <input className="form-control border-start-0 border-end-0 chatSearchBar focus" type="text" placeholder="Cerca Messaggi" />
                         <span className="input-group-text border-start-0 chatSearchBar align-items-center">
                           <VscSettings className="pointer" />
                         </span>

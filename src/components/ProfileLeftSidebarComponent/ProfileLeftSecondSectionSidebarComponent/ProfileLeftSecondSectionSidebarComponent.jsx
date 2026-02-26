@@ -4,7 +4,7 @@ import "./ProfileLeftSecondSectionSidebarComponent.css";
 function ProfileLeftSecondSectionSidebarComponent() {
   return (
     <>
-      <div className="LeftSidebarSecondSection border rounded shadow-sm">
+      <div className="LeftSidebarSecondSection border rounded shadow-sm w-100">
         <div className="sidebar  mb-3 ">
           <Row className="m-2">
             <Col xs={12} className="d-flex justify-content-center">
