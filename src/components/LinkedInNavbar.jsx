@@ -1,19 +1,14 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Navbar, Container, Form, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Container, Form, Nav, NavDropdown, Dropdown } from "react-bootstrap";
+
 // icone simili a quelle di LinkedIn
-import {
-  FaLinkedin,
-  FaHome,
-  FaUserFriends,
-  FaBriefcase,
-  FaCommentDots,
-  FaBell,
-  FaSearch,
-} from "react-icons/fa";
+import { FaLinkedin, FaHome, FaUserFriends, FaBriefcase, FaCommentDots, FaBell, FaSearch } from "react-icons/fa";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import { useSelector } from "react-redux";
 import { logoutUserAction } from "../redux/actions/actions";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../assets/contexts/context";
 
 const LinkedInNavbar = () => {
   // FASE DINAMICA
@@ -22,13 +17,26 @@ const LinkedInNavbar = () => {
   const dispatch = useDispatch();
   const IconSize = 20;
 
+ const {generalOutput, setGeneralOutput} = useContext(AppContext);
+ const { setSelectionObject} = useContext(AppContext);
+ const {populateDropdown} = useContext(AppContext)
+
   const handleLogout = () => {
     localStorage.removeItem("persist:user");
     dispatch(logoutUserAction());
     navigate("/");
   };
 
-  const currentUser = useSelector((currentState) => currentState.user.user);
+  const currentUser = useSelector((currentState) => currentState.user);
+
+  const filtered = populateDropdown;
+
+  useEffect(()=>console.log(populateDropdown),[populateDropdown])
+
+  const [query, setQuery] = useState("");
+  const [show, setShow] = useState(false);
+
+  
 
   const navItems = [
     { path: "/home", Icon: FaHome, label: "Home" },
@@ -50,19 +58,47 @@ const LinkedInNavbar = () => {
           <FaLinkedin size={36} color="#0a66c2" />
         </Navbar.Brand>
 
-        <div className="px-3">
+        <div className="px-3 position-relative">
           <Form className="d-flex me-auto align-items-center">
             <div className="px-2 text-secondary">
               <FaSearch size={16} />
             </div>
+
             <Form.Control
               type="search"
               placeholder="Cerca"
               className="bg-tertiary border-0 rounded-5"
               style={{ minWidth: "250px" }}
-              aria-label="Search"
+              value={query}
+              onChange={(e) => {
+                const value = e.target.value;
+                setQuery(e.target.value);
+                setShow(true);
+                setGeneralOutput(value !== "");
+                console.log(generalOutput)
+                setSelectionObject(e.target.value)
+              }}
+              onFocus={() => setShow(true)}
+              onBlur={() => setTimeout(() => setShow(false), 150)}
+              
             />
           </Form>
+
+          {show && query && filtered.length > 0 && (
+            <Dropdown.Menu show className="w-100 mt-1">
+              {filtered.map((item, index) => (
+                <Dropdown.Item
+                  key={index}
+                  onClick={() => {
+                    setQuery(item);
+                    setShow(false);
+                  }}
+                >
+                  {item}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          )}
         </div>
 
         {/* LATO DESTRO: Navigazione e Profilo */}
@@ -85,7 +121,7 @@ const LinkedInNavbar = () => {
             {/* ZONA PROFILO */}
             <div className="d-flex flex-column align-items-center mx-2 linkedin-nav-icon position-relative">
               <img
-                src={currentUser.image}
+                src={currentUser.user.image}
                 alt="profile"
                 style={{
                   width: "24px",
@@ -97,7 +133,7 @@ const LinkedInNavbar = () => {
               />
               <NavDropdown title="Tu" id="basic-nav-dropdown" style={{ fontSize: "12px" }}>
                 <NavDropdown.Item as={Link} to="/profile/me">
-                  Visualizza Profilo ({currentUser.name})
+                  Visualizza Profilo ({currentUser.user.name})
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#settings">Impostazioni</NavDropdown.Item>
