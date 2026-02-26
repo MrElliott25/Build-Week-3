@@ -14,17 +14,17 @@ import LoginComponent from "./components/LoginComponent";
 import LinkedInNavbar from "./components/LinkedInNavbar";
 import ProfileFrontBanner from "./components/ProfileFrontBanner";
 import ExperiencesBanner from "./components/ExperiencesBanner";
-
-
-import { AppContextProvider } from "../AppContextProvider/AppContextProvider";
-import UniversalMessagingComponent from "./components/UniversalMessagingComponent/UniversalMessagingComponent";
+import HomepageFrontBanner from "./components/HomepageFrontBanner/HomepageFrontBanner";
+import SidebarComponent from "./components/HomepageRightSidebarComponent/SidebarComponent";
 
 const PaginaNonRichiesta = ({ titolo }) => (
   <div className="text-center mt-5 p-5 border rounded bg-white shadow-sm">
     <h2 style={{ color: "#0a66c2" }} className="fw-bold">
       {titolo}
     </h2>
-    <p className="text-muted mt-3">Funzionalità non richiesta per le specifiche di questa Build Week.</p>
+    <p className="text-muted mt-3">
+      Funzionalità non richiesta per le specifiche di questa Build Week.
+    </p>
   </div>
 );
 
@@ -40,28 +40,45 @@ function App() {
             <LinkedInNavbar />
             <UniversalMessagingComponent/>
 
-            {/* Margini globali */}
-            <div className="container mt-4">
-              <Routes>
-                {/* Rotta Login */}
-                <Route path="/" element={<LoginComponent />} />
+          {/* Margini globali */}
+          <div>
+            <Routes>
+              {/* Rotta Login */}
+              <Route path="/" element={<LoginComponent />} />
 
-                {/* Rotta Profilo  */}
-                <Route
-                  path="/profile"
-                  element={
-                    <div className="row">
-                      <div className="col-lg-8">
-                        <ProfileFrontBanner />
-                        <ExperiencesBanner />
-                      </div>
-                      <div className="col-lg-4"></div>
+              {/* Rotta Profilo  */}
+              <Route
+                path="/profile"
+                element={
+                  <div className="row container mx-auto mt-3">
+                    <div className="col-lg-8">
+                      <ProfileFrontBanner />
                     </div>
-                  }
-                />
+                    <div className="col-lg-4">
+                      <SidebarComponent />
+                    </div>
+                  </div>
+                }
+              />
+              <Route
+                path="/profile/me"
+                element={
+                  <div className="row container mx-auto mt-3">
+                    <div className="col-lg-8">
+                      <ProfileFrontBanner />
+                    </div>
+                    <div className="col-lg-4">
+                      <SidebarComponent />
+                    </div>
+                  </div>
+                }
+              />
 
-                {/* IL TAPPABUCHI PER LA HOME  */}
-                <Route path="/home" element={<PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />} />
+              {/* IL TAPPABUCHI PER LA HOME  */}
+              <Route
+                path="/home"
+                element={<PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />}
+              />
 
                 {/* LE PAGINE NON RICHIESTE */}
                 <Route path="/network" element={<PaginaNonRichiesta titolo="La tua Rete" />} />
@@ -69,11 +86,13 @@ function App() {
                 <Route path="/messaging" element={<PaginaNonRichiesta titolo="Messaggistica" />} />
                 <Route path="/notifications" element={<PaginaNonRichiesta titolo="Notifiche" />} />
 
-                {/* ROTTA 404 */}
-                <Route path="*" element={<h1 className="text-center mt-5 text-danger">404 - Sparisci</h1>} />
-              </Routes>
-            </div>
-          </AppContextProvider>
+              {/* ROTTA 404 */}
+              <Route
+                path="*"
+                element={<h1 className="text-center mt-5 text-danger">404 - Sparisci</h1>}
+              />
+            </Routes>
+          </div>
         </BrowserRouter>
       </PersistGate>
     </Provider>

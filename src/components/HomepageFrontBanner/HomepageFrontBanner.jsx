@@ -1,19 +1,72 @@
-import { useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Col, Row, Spinner, Alert } from "react-bootstrap";
 import SinglePost from "./SinglePost";
 import NewPostSection from "./NewPostSection";
 import CreatePost from "./CreatePost";
 
-const HomepageFrontBanner = function () {
-  const [showModal, setShowModal] = useState(false);
+import { fetchPosts } from "../../utils/postsFetch";
+import { SetPostsAction, setPostsLoadingAction, setPostsErrorAction } from "../../redux/actions/postsActions";
+import EditPost from "./EditPost";
 
+const POSTS_API = "https://striveschool-api.herokuapp.com/api/posts";
+
+const HomepageFrontBanner = function () {
+  const dispatch = useDispatch();
+
+  const posts = useSelector((currentState) => {
+    return currentState.posts.content;
+  });
+
+  const isLoading = useSelector((currentState) => {
+    return currentState.posts.isLoading;
+  });
+
+  const error = useSelector((currentState) => {
+    return currentState.posts.error;
+  });
+
+  const [showModal, setShowModal] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [postToEdit, setPostToEdit] = useState(null);
+
+  const openEdit = function (post) {
+    setPostToEdit(post);
+    setShowEdit(true);
+  };
+
+  useEffect(() => {
+    dispatch(setPostsLoadingAction(true));
+
+    fetchPosts(POSTS_API)
+      .then((data) => {
+        const limitedPosts = data.slice(0, 10);
+        dispatch(SetPostsAction(limitedPosts));
+        dispatch(setPostsErrorAction(null));
+
+        dispatch(setPostsLoadingAction(false));
+      })
+      .catch((err) => {
+        dispatch(setPostsErrorAction(err.message));
+        dispatch(setPostsLoadingAction(false));
+      });
+  }, [dispatch]);
+
+  console.log("POSTS in Redux:", posts);
   return (
     <Row>
       <Col></Col>
       <Col className="d-flex flex-column align-items-center">
-        <NewPostSection onOpen={() => setShowModal(true)} />
-        <CreatePost show={showModal} onClose={() => setShowModal(false)} />
-        <SinglePost />
+        <NewPostSection onOpen={() => setShowModal(true)} postsAPI={POSTS_API} />
+        <CreatePost show={showModal} onClose={() => setShowModal(false)} postsAPI={POSTS_API} />
+        <EditPost show={showEdit} onClose={() => setShowEdit(false)} post={postToEdit} postsAPI={POSTS_API} />
+
+        {isLoading && <Spinner className="my-5" animation="grow" />}
+        {error && <Alert variant="danger">{error}</Alert>}
+
+        {posts.map((post) => {
+          return <SinglePost key={post._id} post={post} postsAPI={POSTS_API} onEdit={openEdit} />;
+        })}
       </Col>
       <Col></Col>
     </Row>

@@ -1,9 +1,10 @@
 import { Button, Form, Row, Col, Spinner, Modal } from "react-bootstrap";
-import { Pen, Plus } from "react-bootstrap-icons";
+import { Plus } from "react-bootstrap-icons";
 import { useState, useEffect } from "react";
 import { fetchExperiences, generateExperience } from "../utils/fetch";
 import { useSelector } from "react-redux";
 import SingleExperience from "./SingleExperience";
+import { useLocation } from "react-router-dom";
 
 const ExperiencesBanner = function () {
   const [role, setRole] = useState("");
@@ -15,10 +16,12 @@ const ExperiencesBanner = function () {
   const [showModal, setShowModal] = useState(false);
   const [method, setMethod] = useState("POST");
   const [experienceSonID, setExperienceID] = useState(null);
+  const location = useLocation();
 
   const userID = useSelector((currentState) => {
     return currentState.user._id;
   });
+
   const experiencesAPI = `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`;
   const [allExperiences, setAllExperiences] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -215,7 +218,7 @@ const ExperiencesBanner = function () {
       <div className=" d-flex justify-content-between align-items-center">
         <h3 className="mb-0">Esperienza</h3>
         <div className=" d-flex gap-3">
-          <Button variant="light">
+          <Button variant="light" className={location.pathname === "/profile/me" ? null : "d-none"}>
             <Plus
               size={25}
               onClick={() => {
