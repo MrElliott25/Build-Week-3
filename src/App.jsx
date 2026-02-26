@@ -16,6 +16,8 @@ import ProfileFrontBanner from "./components/ProfileFrontBanner";
 import ExperiencesBanner from "./components/ExperiencesBanner";
 import HomepageFrontBanner from "./components/HomepageFrontBanner/HomepageFrontBanner";
 import SidebarComponent from "./components/HomepageRightSidebarComponent/SidebarComponent";
+import { AppContextProvider } from "../AppContextProvider/AppContextProvider";
+import UniversalMessagingComponent from "./components/UniversalMessagingComponent/UniversalMessagingComponent";
 
 const PaginaNonRichiesta = ({ titolo }) => (
   <div className="text-center mt-5 p-5 border rounded bg-white shadow-sm">
