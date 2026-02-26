@@ -1,4 +1,4 @@
-import { SET_USER } from "../actions/actions";
+import { SET_USER, LOGOUT_USER } from "../actions/actions";
 
 const initialState = {
   user: {
@@ -18,6 +18,9 @@ export const userReducer = (currentState = initialState, action) => {
       return {
         user: action.payload,
       };
+
+    case LOGOUT_USER:
+      return initialState;
 
     default:
       return currentState;
