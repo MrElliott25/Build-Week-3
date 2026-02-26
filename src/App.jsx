@@ -11,7 +11,6 @@ import { persistedStore, store } from "./redux/store/store";
 import { PersistGate } from "redux-persist/integration/react";
 
 // Componenti
-import LoginComponent from "./components/LoginComponent";
 import LinkedInNavbar from "./components/LinkedInNavbar";
 import ProfileFrontBanner from "./components/ProfileFrontBanner";
 import ExperiencesBanner from "./components/ExperiencesBanner";
