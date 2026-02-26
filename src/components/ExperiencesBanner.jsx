@@ -19,7 +19,7 @@ const ExperiencesBanner = function () {
   const location = useLocation();
 
   const userID = useSelector((currentState) => {
-    return currentState.user._id;
+    return currentState.user.user._id;
   });
 
   const experiencesAPI = `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`;
@@ -30,6 +30,7 @@ const ExperiencesBanner = function () {
     setIsLoading(true);
     const data = await fetchExperiences(experiencesAPI);
     setAllExperiences(data);
+    console.log(data);
     setIsLoading(false);
   };
 
@@ -89,13 +90,7 @@ const ExperiencesBanner = function () {
   return (
     <div className=" p-3 rounded border border-black border-opacity-10 mt-3">
       {/* FORM INSERIMENTO ESPERIENZA */}
-      <Modal
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        backdrop="static"
-        centered
-        size="lg"
-      >
+      <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static" centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Aggiungi esperienza</Modal.Title>
         </Modal.Header>
