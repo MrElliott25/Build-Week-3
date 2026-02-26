@@ -1,18 +1,64 @@
 import { Container, Row, Col } from "react-bootstrap";
 import "./ProfileFrontBanner.css";
-import { useContext, useEffect, useState } from "react";
-import { ArrowRight } from "react-bootstrap-icons";
+import { useContext, useEffect, useState, useRef } from "react";
+import { ArrowRight, CameraFill } from "react-bootstrap-icons";
 import ExperiencesBanner from "./ExperiencesBanner";
 import { Link } from "react-router-dom";
 import { AppContext } from "../assets/contexts/context";
-import { useSelector } from "react-redux";
+import { updateImage } from "../utils/fetch";
+import { useSelector, useDispatch } from "react-redux";
+import { token } from "../utils/fetch";
+import { setUserAction } from "../redux/actions/actions";
 
 const ProfileFrontBanner = function () {
   const [referenza, setReferenza] = useState("ricevute");
   const [interessi, setInteressi] = useState("aziende");
   const { populateProfile, setPopulateProfile } = useContext(AppContext);
-
   const profileData = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+
+  const profileAPI = "https://striveschool-api.herokuapp.com/api/profile/";
+  const imageAPI = `https://striveschool-api.herokuapp.com/api/profile/${profileData._id}/picture`;
+
+  const fileInputRef = useRef(null);
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const fetchUser = async () => {
+    try {
+      const res = await fetch(profileAPI, {
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      if (!res.ok) throw new Error("Errore nella pesca dei dati");
+      const data = await res.json();
+
+      const loggedUser = await data.find(
+        (user) => user.email === profileData.email && user.username === profileData.username,
+      );
+      if (loggedUser) {
+        dispatch(setUserAction(loggedUser));
+      }
+      return true;
+    } catch (err) {
+      console.log("Errore! -> " + err);
+      return false;
+    }
+  };
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      console.log("File selezionato:", file.name);
+      await updateImage(imageAPI, file);
+      const myFlag = (await fetchUser()) ? true : false;
+      if (myFlag) window.location.reload();
+    }
+  };
 
   useEffect(() => {
     setPopulateProfile(profileData);
@@ -47,6 +93,28 @@ const ProfileFrontBanner = function () {
                   left: "3%",
                 }}
               />
+              <button
+                type="button"
+                className="btn btn-light rounded-circle border border-primary d-flex align-items-center justify-content-center position-absolute shadow-sm"
+                onClick={handleButtonClick}
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  bottom: "-60px",
+                  left: "15%",
+                  zIndex: 2,
+                }}
+              >
+                <CameraFill size={20} className="text-primary" />
+              </button>
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                className="d-none"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
             </div>
 
             <div className="p-3 pt-5">
@@ -74,15 +142,12 @@ const ProfileFrontBanner = function () {
                 </ul>
               </div>
               {/* area */}
-              <p>
-                Gorizia, Friuli-Venezia Giulia, Italia{" "}
-                <a href="#" className="text-decoration-none">
-                  Informazioni di contatto
-                </a>
-              </p>
+              <p>{populateProfile.area}</p>
               {/* bottoni nella prima scheda */}
               <button className="btn rounded-pill me-2 px-3 py-1 btn-primary">Collegati</button>
-              <button className="btn rounded-pill me-2 px-3 py-1 btn-outline-primary">Messaggio</button>
+              <button className="btn rounded-pill me-2 px-3 py-1 btn-outline-primary">
+                Messaggio
+              </button>
               <button className="btn rounded-pill me-2 px-3 py-1 btn-outline-dark">Altro</button>
             </div>
           </div>
@@ -167,17 +232,20 @@ const ProfileFrontBanner = function () {
                         </Link>
                       </h3>
                       <p>
-                        Ho avuto il privilegio di partecipare al bootcamp presso Strive School (EPICODE) sotto la guida
-                        del docente Stefano Casasola e posso affermare che la sua competenza, professionalità e
-                        dedizione sono state determinanti per il mio percorso di apprendimento. Il suo approccio
-                        didattico è stato sempre chiaro, strutturato e orientato alla pratica, il che mi ha permesso di
-                        sviluppare rapidamente le competenze necessarie per entrare nel mondo della programmazione web.
-                        Mi ha motivato costantemente a dare il massimo, fornendo feedback costruttivi che mi hanno
-                        permesso di crescere sia dal punto di vista tecnico che personale. Oltre alla sua conoscenza
-                        approfondita delle tecnologie, ha saputo creare un ambiente di apprendimento stimolante e
-                        inclusivo, dove ogni studente si è sentito supportato e incoraggiato a superare le proprie
-                        difficoltà. Sono grata per tutto ciò che ho imparato grazie a lui e, senza dubbio, raccomando
-                        vivamente la sua guida a chiunque voglia intraprendere un percorso nel mondo del coding.
+                        Ho avuto il privilegio di partecipare al bootcamp presso Strive School
+                        (EPICODE) sotto la guida del docente Stefano Casasola e posso affermare che
+                        la sua competenza, professionalità e dedizione sono state determinanti per
+                        il mio percorso di apprendimento. Il suo approccio didattico è stato sempre
+                        chiaro, strutturato e orientato alla pratica, il che mi ha permesso di
+                        sviluppare rapidamente le competenze necessarie per entrare nel mondo della
+                        programmazione web. Mi ha motivato costantemente a dare il massimo, fornendo
+                        feedback costruttivi che mi hanno permesso di crescere sia dal punto di
+                        vista tecnico che personale. Oltre alla sua conoscenza approfondita delle
+                        tecnologie, ha saputo creare un ambiente di apprendimento stimolante e
+                        inclusivo, dove ogni studente si è sentito supportato e incoraggiato a
+                        superare le proprie difficoltà. Sono grata per tutto ciò che ho imparato
+                        grazie a lui e, senza dubbio, raccomando vivamente la sua guida a chiunque
+                        voglia intraprendere un percorso nel mondo del coding.
                       </p>
                     </div>
                   </div>
@@ -199,10 +267,11 @@ const ProfileFrontBanner = function () {
                         </a>
                       </h3>
                       <p>
-                        I strongly believe that despite the professional skills, human values are the most important.
-                        But when a person is both professional and has tons of other values, thats what makes him/her a
-                        unique asset in any team. For anyone who has to read this reccommendation, I have to say don't
-                        waste a second, because your professional search is going to end here and now.
+                        I strongly believe that despite the professional skills, human values are
+                        the most important. But when a person is both professional and has tons of
+                        other values, thats what makes him/her a unique asset in any team. For
+                        anyone who has to read this reccommendation, I have to say don't waste a
+                        second, because your professional search is going to end here and now.
                       </p>
                     </div>
                   </div>
@@ -229,11 +298,13 @@ const ProfileFrontBanner = function () {
                         </a>
                       </h3>
                       <p>
-                        Ho avuto il privilegio di partecipare al bootcamp presso Strive School (EPICODE) sotto la guida
-                        del docente Stefano Casasola e posso affermare che la sua competenza, professionalità e
-                        dedizione sono state determinanti per il mio percorso di apprendimento. Il suo approccio
-                        didattico è stato sempre chiaro, strutturato e orientato alla pratica, il che mi ha permesso di
-                        sviluppare rapidamente le competenze necessarie per entrare nel mondo della programmazione web.
+                        Ho avuto il privilegio di partecipare al bootcamp presso Strive School
+                        (EPICODE) sotto la guida del docente Stefano Casasola e posso affermare che
+                        la sua competenza, professionalità e dedizione sono state determinanti per
+                        il mio percorso di apprendimento. Il suo approccio didattico è stato sempre
+                        chiaro, strutturato e orientato alla pratica, il che mi ha permesso di
+                        sviluppare rapidamente le competenze necessarie per entrare nel mondo della
+                        programmazione web.
                       </p>
                     </div>
                   </div>
@@ -255,11 +326,12 @@ const ProfileFrontBanner = function () {
                         </a>
                       </h3>
                       <p>
-                        Durante il suo percorso formativo in EPICODE, Hassan ha sempre dimostrato una grande voglia di
-                        apprendere ed inesauribile tenacia, argomento dopo argomento. Sempre costante nell'esecuzione e
-                        nelle consegne, ha appreso con ritmo le tematiche proposte durante il corso. Nei lavori di
-                        squadra si è dimostrato un membro serio e affidabile nei team in cui è stato inserito, capace di
-                        collaborare al meglio al fine di ottenere un risultato collettivo.
+                        Durante il suo percorso formativo in EPICODE, Hassan ha sempre dimostrato
+                        una grande voglia di apprendere ed inesauribile tenacia, argomento dopo
+                        argomento. Sempre costante nell'esecuzione e nelle consegne, ha appreso con
+                        ritmo le tematiche proposte durante il corso. Nei lavori di squadra si è
+                        dimostrato un membro serio e affidabile nei team in cui è stato inserito,
+                        capace di collaborare al meglio al fine di ottenere un risultato collettivo.
                       </p>
                     </div>
                   </div>
