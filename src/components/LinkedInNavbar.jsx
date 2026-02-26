@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Navbar, Container, Form, Nav, NavDropdown } from "react-bootstrap";
 // icone simili a quelle di LinkedIn
 import {
@@ -11,17 +12,23 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
+import { useSelector } from "react-redux";
+import { logoutUserAction } from "../redux/actions/actions";
 
 const LinkedInNavbar = () => {
   // FASE DINAMICA
+  const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const IconSize = 20;
 
-  // questo andrà sostituito con: const currentUser = useSelector((state) => state.user);
-  const currentUser = {
-    name: "Carmelo",
-    image: "https://via.placeholder.com/30",
+  const handleLogout = () => {
+    localStorage.removeItem("persist:user");
+    dispatch(logoutUserAction());
+    navigate("/");
   };
+
+  const currentUser = useSelector((currentState) => currentState.user.user);
 
   const navItems = [
     { path: "/home", Icon: FaHome, label: "Home" },
@@ -94,6 +101,9 @@ const LinkedInNavbar = () => {
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#settings">Impostazioni</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => handleLogout()} className="text-danger fw-bold">
+                  Logout
+                </NavDropdown.Item>
               </NavDropdown>
             </div>
 

@@ -1,8 +1,11 @@
 import { Image, Button } from "react-bootstrap";
 import { Pen, Trash3 } from "react-bootstrap-icons";
 import { deleteExperience } from "../utils/fetch";
+import { useLocation } from "react-router-dom";
 
 const SingleExperience = (props) => {
+  const location = useLocation();
+
   //Funzione per calcolare la durata dando startDate e endDate
   const calculateDuration = (start, end) => {
     const [startYear, startMonth] = start.split("-").map(Number);
@@ -34,7 +37,7 @@ const SingleExperience = (props) => {
           <div>
             <Button
               variant="light"
-              className="me-2"
+              className={location.pathname === "/profile/me" ? "me-2" : "d-none"}
               onClick={() => {
                 props.setID(props.id);
                 props.rehydrate();
@@ -43,6 +46,7 @@ const SingleExperience = (props) => {
               <Pen size={20}></Pen>
             </Button>
             <Button
+              className={location.pathname === "/profile/me" ? "me-2" : "d-none"}
               variant="danger"
               onClick={async () => {
                 if (window.confirm("Sei sicuro di voler eliminare questa esperienza?")) {
