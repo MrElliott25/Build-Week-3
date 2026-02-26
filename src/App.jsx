@@ -75,19 +75,37 @@ function App() {
               {/* IL TAPPABUCHI PER LA HOME  */}
               <Route
                 path="/home"
-                element={<PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />}
+                element={
+                  <PaginaNonRichiesta titolo="Feed della Home (In Costruzione)" />
+                }
               />
 
               {/* LE PAGINE NON RICHIESTE */}
-              <Route path="/network" element={<PaginaNonRichiesta titolo="La tua Rete" />} />
-              <Route path="/jobs" element={<PaginaNonRichiesta titolo="Offerte di Lavoro" />} />
-              <Route path="/messaging" element={<PaginaNonRichiesta titolo="Messaggistica" />} />
-              <Route path="/notifications" element={<PaginaNonRichiesta titolo="Notifiche" />} />
+              <Route
+                path="/network"
+                element={<PaginaNonRichiesta titolo="La tua Rete" />}
+              />
+              <Route
+                path="/jobs"
+                element={<PaginaNonRichiesta titolo="Offerte di Lavoro" />}
+              />
+              <Route
+                path="/messaging"
+                element={<PaginaNonRichiesta titolo="Messaggistica" />}
+              />
+              <Route
+                path="/notifications"
+                element={<PaginaNonRichiesta titolo="Notifiche" />}
+              />
 
               {/* ROTTA 404 */}
               <Route
                 path="*"
-                element={<h1 className="text-center mt-5 text-danger">404 - Sparisci</h1>}
+                element={
+                  <h1 className="text-center mt-5 text-danger">
+                    404 - Sparisci
+                  </h1>
+                }
               />
             </Routes>
           </div>

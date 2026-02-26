@@ -3,40 +3,26 @@ import { Container, Row, Col } from "react-bootstrap";
 import { ArrowRight } from "react-bootstrap-icons";
 import Carousel from "react-bootstrap/Carousel";
 import "./WorkPage.css";
+import { workPageFetch } from "../utils/fetch";
 import {
   ArrowLeftCircleFill,
   ArrowRightCircleFill,
   X,
 } from "react-bootstrap-icons";
 
+const workAPI = "https://strive-benchmark.herokuapp.com/api/jobs";
 const WorkPage = function () {
   const [categoria, setCategoria] = useState("candidatura semplice");
 
   const [data, setData] = useState({});
-  const URL = "https://strive-benchmark.herokuapp.com/api/jobs";
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTlkYzZkNGI1NTgyMDAwMTU4YzM0NDYiLCJpYXQiOjE3NzE5NDc3MzIsImV4cCI6MTc3MzE1NzMzMn0.aEODpXiz7ht7RC-mDhwkOwwG6ecpXfZRdXooHLoEs4I";
+  const loadData = async () => {
+    const data = await workPageFetch(workAPI);
+    setData(data);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let response = await fetch(URL, {
-          headers: {
-            Authorization: token,
-          },
-        });
-        if (!response.ok) {
-          throw new Error("errore nel recupero dati");
-        }
-        const dato = await response.json();
-        console.log("dati arrivati", dato);
-        setData(dato);
-      } catch (err) {
-        console.log("errore", err);
-      }
-    };
-    fetchData();
+    loadData();
   }, []);
-  //   console.log("data", data.data);
   console.log("data", data.data);
 
   //per il caroseelo
