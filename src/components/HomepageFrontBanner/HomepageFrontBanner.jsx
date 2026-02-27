@@ -43,7 +43,9 @@ const HomepageFrontBanner = function () {
 
     fetchPosts(POSTS_API)
       .then((data) => {
-        const limitedPosts = data.slice(50, 80);
+        const sortedPosts = data.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        const limitedPosts = sortedPosts.slice(0, 50);
         dispatch(SetPostsAction(limitedPosts));
         dispatch(setPostsErrorAction(null));
 
