@@ -17,7 +17,7 @@ function ProfileLeftSidebarHeaderComponent({ name, occupation, provenance }) {
               <p className="fontsizeDescriptionText grey ellipsisText">{provenance}</p>
 
               <div className="mt-3 pe-2 experienceText">
-                <p className="ps-4 m-0 experienceTextDetails bold grey">Esperienza</p>
+                <p className="m-0 experienceTextDetails bold grey">Esperienza</p>
               </div>
             </div>
           </Col>
