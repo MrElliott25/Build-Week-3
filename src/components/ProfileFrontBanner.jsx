@@ -127,19 +127,6 @@ const ProfileFrontBanner = function () {
                   {/* esperienze */}
                   <p className="mb-1">{populateProfile.title}</p>
                 </div>
-                {/* ul per mettere aziende o studi frequentati */}
-                <ul className="ms-lg-auto list-unstyled mb-2 mb-lg-0">
-                  <li>
-                    <Link to="/company/epicode" className=" a-blue">
-                      EPICODE
-                    </Link>
-                  </li>
-                  <li>
-                    <a href="#" className=" a-blue">
-                      Università degli Studi di Udine
-                    </a>
-                  </li>
-                </ul>
               </div>
               {/* area */}
               <p>{populateProfile.area}</p>
